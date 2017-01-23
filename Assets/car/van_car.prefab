@@ -1894,7 +1894,7 @@ GameObject:
   - component: {fileID: 92009091245736032}
   - component: {fileID: 81975387318009548}
   m_Layer: 0
-  m_Name: Camera (1)
+  m_Name: cam_car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6717,7 +6717,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1277941927320322}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -7570,7 +7570,7 @@ MonoBehaviour:
   centerOfMass: {fileID: 4000010607892588}
   Ccont: {fileID: 0}
   speedMax: 150
-  speedSide: 20
+  speedSide: 30
   speedBreak: 20000
 --- !u!114 &114277077431224462
 MonoBehaviour:

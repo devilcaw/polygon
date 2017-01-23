@@ -671,11 +671,6 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400010, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
   m_PrefabInternal: {fileID: 781375855}
---- !u!20 &221261164 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20499111077002352, guid: aa82e71d79f1ee747aea13db73d4ac43,
-    type: 2}
-  m_PrefabInternal: {fileID: 1062669952}
 --- !u!1 &229080458
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,24 +2300,6 @@ Prefab:
       propertyPath: Ccont
       value: 
       objectReference: {fileID: 1190196810}
-    - target: {fileID: 1277941927320322, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23638479102780098, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114072356667636744, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: cam_car
-      value: 
-      objectReference: {fileID: 221261164}
-    - target: {fileID: 1633147974027556, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
-      propertyPath: m_Name
-      value: cam_car
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
   m_IsPrefabParent: 0
