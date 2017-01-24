@@ -28,9 +28,9 @@ public class Cam_Scr : MonoBehaviour {
         offset.z += Input.GetAxis("Mouse ScrollWheel") * 3f;
         offset.z = Mathf.Clamp(offset.z, maxZ, minZ);
 
-        X = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
+		X = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
 
-        Y += Input.GetAxis("Mouse Y") * sensitivity;
+		Y += Input.GetAxis("Mouse Y") * sensitivity;
         Y = Mathf.Clamp(Y, -maxLimit, minLimit);
 		transform.localEulerAngles = new Vector3 (-Y, X, 0);
         Vector3 position = transform.localRotation * offset + target.position;

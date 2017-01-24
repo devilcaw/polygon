@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Character_control : MonoBehaviour {
+	
 	private float speed;
 	public CharacterController controller;
 	public Transform pricel;
@@ -11,15 +12,16 @@ public class Character_control : MonoBehaviour {
 	public bool dev_mode;
 	public float pushPower;
 	public bool aprm;
+
 	[Header("Speed")]
 	public float walk_s;
 	public float run_s;
 	public float crouch_s;
+
 	[Header("Ability")]
 	private bool can_shoot;
 	public bool can_walk;
 	public bool can_ride;
-
 
 	void Start() {
 		animator = GetComponent<Animator> ();

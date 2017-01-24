@@ -1633,6 +1633,7 @@ GameObject:
   - component: {fileID: 54150800916572992}
   - component: {fileID: 65632159392604916}
   - component: {fileID: 114072356667636744}
+  - component: {fileID: 208245080708897986}
   m_Layer: 0
   m_Name: van_car
   m_TagString: Untagged
@@ -7708,3 +7709,18 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 0.67
   m_Enabled: 1
+--- !u!208 &208245080708897986
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013638833442}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
