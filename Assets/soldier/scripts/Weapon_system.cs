@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 public class Weapon_system : MonoBehaviour {
 	private GameObject player;
@@ -10,18 +11,23 @@ public class Weapon_system : MonoBehaviour {
 	public GameObject weapon;
 	public string anim_p_shoot;
 	public KeyCode key_bind;
+
 	[Header("Ammo")]
 	public int ammo_max;
 	public int ammo_count;
+
 	[Header("Oboyma")]
 	public GameObject oboyma;
 	public int oboyma_max;
 	public int oboyma_count;
 	public GameObject gilza;
 	public Transform gilza_t;
+
 	[Header("Time to shoot")]
 	public float time_to_shoot;
 	public float wait_to_shoot;
+
+	private GameObject npc;
 
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -66,10 +72,31 @@ public class Weapon_system : MonoBehaviour {
 					g.transform.position = hit.point + hit.normal * 0.01f;
 					g.transform.rotation = Quaternion.LookRotation (-hit.normal);
 					g.transform.SetParent (hit.transform);
+
+					if (hit.transform.tag == "NPC") {
+						hit.transform.gameObject.GetComponent<NPC_system> ().fight.damage_get = true;
+						hit.transform.gameObject.GetComponent<NPC_system> ().fight.health -= 1;
+						if (hit.transform.gameObject.GetComponent<NPC_system> ().fight.health == 0) {
+							hit.transform.gameObject.GetComponent<NPC_system> ().enabled = false;
+							hit.transform.gameObject.GetComponent<NavMeshAgent> ().enabled = false;
+							hit.transform.gameObject.GetComponent<Animator> ().enabled = false;
+							for (int i = 0; i < hit.transform.gameObject.GetComponent<NPC_system> ().Npc_body.ragdoll.Length; i++) {
+								hit.transform.gameObject.GetComponent<NPC_system> ().Npc_body.ragdoll [i].isTrigger = false;
+								hit.transform.gameObject.GetComponent<NPC_system> ().Npc_body.ragdoll [i].gameObject.GetComponent<Rigidbody>().useGravity = true;
+								hit.transform.gameObject.GetComponent<CapsuleCollider> ().enabled = false;
+							}
+
+						}
+					}
+
 					if (hit.rigidbody) {
 						hit.rigidbody.AddForceAtPosition (Camera.main.transform.forward, hit.point, ForceMode.Impulse);
 					}
+
 				}
+
+
+
 				oboyma_count = oboyma_count - 1;
 				shoot.shoot = true;
 				animator.SetBool ("shoot", true);
@@ -79,6 +106,7 @@ public class Weapon_system : MonoBehaviour {
 				animator.SetBool ("shoot", false);
 				Ccont.animator.SetBool (anim_p_shoot, false);
 			}
+
 			if (Input.GetKeyDown (KeyCode.R) & (oboyma_count < oboyma_max)) {
 				if (ammo_count > 0) {
 					GameObject goo = Instantiate (oboyma, oboyma.transform) as GameObject;

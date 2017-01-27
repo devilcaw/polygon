@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - pistol
+  - NPC
+  - NPC_child
   layers:
   - Default
   - TransparentFX

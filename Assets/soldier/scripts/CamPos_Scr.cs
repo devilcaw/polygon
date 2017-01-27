@@ -21,9 +21,9 @@ public class CamPos_Scr : MonoBehaviour {
 		}
 		if (Ccont.can_ride == true) {
 			camNum = 2;
-			float smx = Mathf.SmoothDamp (transform.position.x, camDots [camNum].transform.position.x, ref velocity.x, 0);
-			float smy = Mathf.SmoothDamp (transform.position.y, camDots [camNum].transform.position.y, ref velocity.y, 0);
-			//transform.position = new Vector3 (smx, smy, camDots [camNum].transform.position.z);
+		//	float smx = Mathf.SmoothDamp (transform.position.x, camDots [camNum].transform.position.x, ref velocity.x, 0);
+		//	float smy = Mathf.SmoothDamp (transform.position.y, camDots [camNum].transform.position.y, ref velocity.y, 0);
+		//	transform.position = new Vector3 (smx, smy, camDots [camNum].transform.position.z);
 			transform.position = camDots [camNum].transform.position + Vector3.up * 1.5f;
 		}
 			//transform.position = camDots [camNum].transform.position;
