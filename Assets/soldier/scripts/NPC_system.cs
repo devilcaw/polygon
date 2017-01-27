@@ -21,6 +21,8 @@ public class NPC_system : MonoBehaviour {
 	public Transform look_track;
 	public Transform player_look_track;
 
+	public Animator anim;
+
 	[Header("Look distantion")]
 	public float look_dist;
 	public float look_ugolV;
@@ -44,6 +46,8 @@ public class NPC_system : MonoBehaviour {
 
 		place_count = target_place.Length;
 		place_number = rand.Next (0, place_count);
+
+		anim = GetComponent<Animator> ();
 	}
 	
 
@@ -54,6 +58,11 @@ public class NPC_system : MonoBehaviour {
 		}
 		nagent.SetDestination (target_place [place_number].position);
 
+		if (nagent.velocity.z != 0)
+			anim.SetBool ("walk", true);
+		else
+			anim.SetBool ("walk", false);
+		
 		/*
 		if (spalil == true) {
 			nagent.SetDestination (player.transform.position);

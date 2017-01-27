@@ -23,6 +23,7 @@ public class car_control : MonoBehaviour {
 
 	void Start () {
 		GetComponent<Rigidbody> ().centerOfMass = centerOfMass.localPosition;
+		GetComponent<Rigidbody>().interpolation = RigidbodyInterpolation.Interpolate;
 		Physics.gravity = new Vector3 (0f, -29.4f, 0f);
 		frame_early = transform.position;
 	}

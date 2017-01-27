@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Weapon_system : MonoBehaviour {
+	private GameObject player;
 	public Character_control Ccont;
 	public Animator animator;
 	public GameObject decal;
@@ -23,7 +24,7 @@ public class Weapon_system : MonoBehaviour {
 	public float wait_to_shoot;
 
 	void Start () {
-		
+		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 
@@ -50,11 +51,14 @@ public class Weapon_system : MonoBehaviour {
 				time_to_shoot -= Time.deltaTime;
 			if ((Input.GetMouseButtonDown (0)) & (Ccont.celim == true) & (weapon.activeSelf == true) & (oboyma_count > 0) & (time_to_shoot <= 0)) {
 				time_to_shoot = wait_to_shoot;
+
 				GameObject go = Instantiate (gilza, gilza_t) as GameObject;
 				go.transform.position = gilza_t.position;
 				go.transform.rotation = gilza_t.rotation;
 				go.transform.parent = null;
 				go.AddComponent<Rigidbody> ().AddForce (go.transform.right, ForceMode.Impulse);
+				Physics.IgnoreCollision (player.GetComponent<Collider> (), go.GetComponent<Collider> ());
+
 				RaycastHit hit;
 				Ray ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
 				if (Physics.Raycast (ray, out hit, 100, 1)) {
@@ -83,6 +87,7 @@ public class Weapon_system : MonoBehaviour {
 					goo.transform.parent = null;
 					goo.AddComponent<BoxCollider> ();
 					goo.AddComponent<Rigidbody> ().AddForce (-goo.transform.up, ForceMode.Impulse);
+					Physics.IgnoreCollision (player.GetComponent<Collider> (), goo.GetComponent<Collider> ());
 				}
 				if ((ammo_count - (oboyma_max - oboyma_count)) >= 0) {
 					ammo_count = (ammo_count - (oboyma_max - oboyma_count));

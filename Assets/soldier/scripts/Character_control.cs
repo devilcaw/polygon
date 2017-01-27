@@ -34,7 +34,7 @@ public class Character_control : MonoBehaviour {
 		animator.SetBool ("grab", false);
 	}
 
-	void FixedUpdate () {
+	void Update () {
 		if (can_walk == true) {
 			controller.enabled = true;
 			if (Input.GetKey (KeyCode.Q) & (Input.GetKey (KeyCode.W))) {

@@ -1785,6 +1785,7 @@ MonoBehaviour:
   player: {fileID: 1257292959}
   look_track: {fileID: 838993156}
   player_look_track: {fileID: 0}
+  anim: {fileID: 0}
   look_dist: 10
   look_ugolV: 60
   nagent: {fileID: 0}
@@ -2661,6 +2662,7 @@ MonoBehaviour:
   player: {fileID: 1257292959}
   look_track: {fileID: 1265583126}
   player_look_track: {fileID: 0}
+  anim: {fileID: 0}
   look_dist: 10
   look_ugolV: 60
   nagent: {fileID: 0}
@@ -3255,6 +3257,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: af28a1a397218084199dd34b24eb809f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
   m_IsPrefabParent: 0
