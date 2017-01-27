@@ -3747,7 +3747,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100146, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400146, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -3767,11 +3767,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100022, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
@@ -3779,7 +3779,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100084, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100082, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
@@ -3799,7 +3799,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100074, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
@@ -3815,11 +3815,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100136, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100078, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100138, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
@@ -3827,7 +3827,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
@@ -3835,11 +3835,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100066, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100128, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
@@ -3851,11 +3851,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100140, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: NPC_child
       objectReference: {fileID: 0}
     - target: {fileID: 100068, guid: 99dea53fa1ee6884588945fb989d3600, type: 3}
       propertyPath: m_TagString
