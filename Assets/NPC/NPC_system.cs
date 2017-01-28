@@ -22,6 +22,8 @@ public class NPC_system : MonoBehaviour {
 		public GameObject player;
 		public Transform look_track;
 		public Transform player_look_track;
+
+		public GameObject player_car;
 	}
 
 	[System.Serializable]
@@ -81,7 +83,14 @@ public class NPC_system : MonoBehaviour {
 		}
 
 		Player_group.player = GameObject.FindGameObjectWithTag ("Player");
-
+		Player_group.player_car = GameObject.FindGameObjectWithTag ("Player_car");
+		Physics.IgnoreCollision (Player_group.player_car.GetComponent<Collider>(), GetComponent<Collider> ());
+		for (int i = 0; i < Player_group.player_car.GetComponent<car_control> ().backCols.Length; i++) {
+			for (int j = 0; j < Npc_body.ragdoll.Length; j++) {
+				Physics.IgnoreCollision (Player_group.player_car.GetComponent<car_control> ().backCols [i], Npc_body.ragdoll[j].GetComponent<Collider> ());
+				Physics.IgnoreCollision (Player_group.player_car.GetComponent<car_control> ().frontCols [i], Npc_body.ragdoll[j].GetComponent<Collider> ());
+			}
+		}
 		gameObject.AddComponent<NavMeshAgent> ();
 		move.nagent = GetComponent<NavMeshAgent> ();
 		move.nagent.height = 1.8f;
