@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using UnityEngine.AI;
+using UnityEditor;
 
 internal enum Npc_type {
 	npc_type_military,
@@ -25,7 +26,7 @@ public class NPC_system : MonoBehaviour {
 
 		public GameObject player_car;
 	}
-
+		
 	[System.Serializable]
 	public class Npc_body_class {
 		[Header("Ragdoll")]
@@ -64,7 +65,12 @@ public class NPC_system : MonoBehaviour {
 		public int health;
 		public bool damage_get;
 	}
-		
+
+	[ContextMenu ("Do Something")]
+	void DoSomething () {
+		Debug.Log ("Perform operation");
+	}
+
 	[HideInInspector]	
 	public Animator anim;
 
@@ -91,6 +97,7 @@ public class NPC_system : MonoBehaviour {
 				Physics.IgnoreCollision (Player_group.player_car.GetComponent<car_control> ().frontCols [i], Npc_body.ragdoll[j].GetComponent<Collider> ());
 			}
 		}
+
 		gameObject.AddComponent<NavMeshAgent> ();
 		move.nagent = GetComponent<NavMeshAgent> ();
 		move.nagent.height = 1.8f;
@@ -101,7 +108,6 @@ public class NPC_system : MonoBehaviour {
 
 		anim = GetComponent<Animator> ();
 	}
-	
 
 	void FixedUpdate () {
 

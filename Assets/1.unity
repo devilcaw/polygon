@@ -2642,6 +2642,14 @@ Prefab:
       propertyPath: Ccont
       value: 
       objectReference: {fileID: 1190196810}
+    - target: {fileID: 1277941927320322, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266532807797916, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
   m_IsPrefabParent: 0
