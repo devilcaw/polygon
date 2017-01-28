@@ -2642,50 +2642,6 @@ Prefab:
       propertyPath: Ccont
       value: 
       objectReference: {fileID: 1190196810}
-    - target: {fileID: 208245080708897986, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: m_Carve
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 208245080708897986, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: m_MoveThreshold
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 208245080708897986, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: m_TimeToStationary
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 208245080708897986, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: m_CarveOnlyStationary
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013638833442, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
-      propertyPath: m_TagString
-      value: Player_car
-      objectReference: {fileID: 0}
-    - target: {fileID: 65632159392604916, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65632159392604916, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65632159392604916, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 4.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 65632159392604916, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: m_Center.z
-      value: -0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
   m_IsPrefabParent: 0
