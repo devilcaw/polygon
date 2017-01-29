@@ -84,7 +84,7 @@ public class NPC_system : MonoBehaviour {
 	void Start () {
 		for (int i = 0; i < Npc_body.ragdoll.Length; i++) {
 			Npc_body.ragdoll [i].gameObject.GetComponent<Rigidbody> ().interpolation = RigidbodyInterpolation.Interpolate;
-			Npc_body.ragdoll [i].gameObject.GetComponent<Rigidbody> ().useGravity = false;
+			Npc_body.ragdoll [i].gameObject.GetComponent<Rigidbody> ().isKinematic = true;
 			Npc_body.ragdoll [i].isTrigger = true;
 		}
 

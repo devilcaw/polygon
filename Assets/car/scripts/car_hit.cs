@@ -33,7 +33,7 @@ public class car_hit : MonoBehaviour {
 					npc.GetComponent<Animator> ().enabled = false;
 					for (int i = 0; i < npc.GetComponent<NPC_system> ().Npc_body.ragdoll.Length; i++) {
 						npc.GetComponent<NPC_system> ().Npc_body.ragdoll [i].isTrigger = false;
-						npc.GetComponent<NPC_system> ().Npc_body.ragdoll [i].gameObject.GetComponent<Rigidbody> ().useGravity = true;
+						npc.GetComponent<NPC_system> ().Npc_body.ragdoll [i].gameObject.GetComponent<Rigidbody> ().isKinematic = false;
 						npc.GetComponent<CapsuleCollider> ().enabled = false;
 					}
 				}
