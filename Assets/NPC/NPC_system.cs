@@ -14,7 +14,7 @@ internal enum Npc_type {
 [RequireComponent(typeof (NavMeshAgent))]
 
 public class NPC_system : MonoBehaviour {
-
+	public int damage;
 	[SerializeField] private Npc_type npc_type = Npc_type.npc_type_civil;
 
 	[System.Serializable]
