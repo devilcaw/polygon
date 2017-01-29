@@ -9,12 +9,17 @@ public class NPC_system_gui : Editor {
 
 	public override void OnInspectorGUI() {
 		DrawDefaultInspector ();
-		NPC_system npc_sys;
+
+		var npc_sys = target as NPC_system;
 
 		if (GUILayout.Button ("Button"))
 			Debug.Log (1);
 		
 		h_slider = EditorGUILayout.IntSlider (h_slider, 1, 10);
 
+		if (h_slider == 4)
+			npc_sys.Player_group.player.SetActive (false);
+		else
+			npc_sys.Player_group.player.SetActive (true);
 	}
 }
