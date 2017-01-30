@@ -31,6 +31,7 @@ public class Weapon_system : MonoBehaviour {
 
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
+		Ccont = player.GetComponent<Character_control> ();
 	}
 	
 

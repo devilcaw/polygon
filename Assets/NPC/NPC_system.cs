@@ -55,7 +55,6 @@ public class NPC_system : MonoBehaviour {
 		[Header("Move")]
 		public System.Random rand = new System.Random();
 		public NavMeshAgent nagent;
-		public bool spalil;
 	}
 
 	[System.Serializable]
@@ -64,9 +63,15 @@ public class NPC_system : MonoBehaviour {
 		public int place_number;
 		public float now_wait;
 		public int place_count;
+
+		[System.Serializable]
+		public class in_place {
+		public Transform target_place;
 		[Tooltip("how long wait in the N place")]
-		public float[] place_wait;
-		public Transform[] target_place;
+		public float place_wait;
+		public String place_anim;
+		}
+		public in_place[] On_place;
 	}
 
 	[System.Serializable]
@@ -74,6 +79,7 @@ public class NPC_system : MonoBehaviour {
 		[Header("Fight")]
 		public int health;
 		public bool damage_get;
+		public bool spalil;
 	}
 
 	[ContextMenu ("Do Something")]
@@ -113,7 +119,7 @@ public class NPC_system : MonoBehaviour {
 		move.nagent.height = 1.8f;
 		move.nagent.baseOffset = -0.085f;
 
-		T_places.place_count = T_places.target_place.Length;
+		T_places.place_count = T_places.On_place.Length;
 		T_places.place_number = move.rand.Next (0, T_places.place_count);
 
 		anim = GetComponent<Animator> ();
@@ -121,18 +127,18 @@ public class NPC_system : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		if ((transform.position.x == T_places.target_place [T_places.place_number].position.x) & (transform.position.z == T_places.target_place [T_places.place_number].position.z)) {
+		if ((transform.position.x == T_places.On_place [T_places.place_number].target_place.position.x) & (transform.position.z == T_places.On_place[T_places.place_number].target_place.position.z)) {
 			
-			if (transform.rotation != T_places.target_place [T_places.place_number].rotation)
-				transform.rotation = Quaternion.Slerp(transform.rotation, T_places.target_place [T_places.place_number].rotation, 0.01f);
+			if (transform.rotation != T_places.On_place [T_places.place_number].target_place.rotation)
+				transform.rotation = Quaternion.Slerp(transform.rotation, T_places.On_place [T_places.place_number].target_place.rotation, 0.01f);
 			
 			T_places.now_wait += Time.deltaTime;
-			if (T_places.now_wait >= T_places.place_wait[T_places.place_number]) {
+			if (T_places.now_wait >= T_places.On_place[T_places.place_number].place_wait) {
 				T_places.place_number = move.rand.Next (0, T_places.place_count);
 				T_places.now_wait = 0;
 			}
 		}
-		move.nagent.SetDestination (T_places.target_place [T_places.place_number].position);
+		move.nagent.SetDestination (T_places.On_place [T_places.place_number].target_place.position);
 
 		if (move.nagent.velocity.z != 0) {
 			anim.SetBool ("walk", true);
