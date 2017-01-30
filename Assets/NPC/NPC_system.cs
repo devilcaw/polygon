@@ -14,7 +14,7 @@ internal enum Npc_type {
 [RequireComponent(typeof (NavMeshAgent))]
 
 public class NPC_system : MonoBehaviour {
-	public int damage;
+
 	[SerializeField] private Npc_type npc_type = Npc_type.npc_type_civil;
 
 	[System.Serializable]
@@ -31,6 +31,16 @@ public class NPC_system : MonoBehaviour {
 	public class Npc_body_class {
 		[Header("Ragdoll")]
 		public Collider[] ragdoll;
+
+		[Header("Cloth")]
+		public SkinnedMeshRenderer Npc_skin;
+
+		[Header("Bottoms")]
+		public GameObject Npc_cloth_bottoms;
+
+		[Tooltip("Cloth for face")]
+		public GameObject[] balaklava;
+		public int balaklava_n;
 	}
 
 	[System.Serializable]
