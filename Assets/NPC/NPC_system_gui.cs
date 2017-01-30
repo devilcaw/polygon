@@ -38,6 +38,7 @@ public class NPC_system_gui : Editor {
 
 			addCloth (npc_sys.Npc_body.balaklava [balaklava_n], npc_sys.Npc_body.Npc_cloth_bottoms);
 			npc_sys.Npc_body.Npc_cloth_bottoms = cloth_now;
+			npc_sys.Npc_body.balaklava_n = balaklava_n;
 		}
 	}		
 
@@ -47,10 +48,6 @@ public class NPC_system_gui : Editor {
 		EditorGUILayout.Space ();
 	}
 
-	void OnDisable() {
-		var npc_sys = target as NPC_system;
-		npc_sys.Npc_body.balaklava_n = balaklava_n;
-	}
 
 	void addCloth(GameObject cloth, GameObject cloth_old) {
 		var npc_sys = target as NPC_system;
