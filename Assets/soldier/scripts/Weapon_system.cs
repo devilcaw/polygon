@@ -2,7 +2,15 @@
 using System.Collections;
 using UnityEngine.AI;
 
+internal enum Weapon_type {
+	pistol,
+	shotgun,
+	auto_rifle
+}
+
 public class Weapon_system : MonoBehaviour {
+	[SerializeField] private Weapon_type weapon_type = Weapon_type.pistol;
+
 	private GameObject player;
 	public Character_control Ccont;
 	public Animator animator;

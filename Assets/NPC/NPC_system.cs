@@ -127,17 +127,19 @@ public class NPC_system : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		if ((transform.position.x == T_places.On_place [T_places.place_number].target_place.position.x) & (transform.position.z == T_places.On_place[T_places.place_number].target_place.position.z)) {
-			
+		if ((transform.position.x == T_places.On_place [T_places.place_number].target_place.position.x) & (transform.position.z == T_places.On_place [T_places.place_number].target_place.position.z)) {
+			anim.SetBool (T_places.On_place [T_places.place_number].place_anim, true);
 			if (transform.rotation != T_places.On_place [T_places.place_number].target_place.rotation)
-				transform.rotation = Quaternion.Slerp(transform.rotation, T_places.On_place [T_places.place_number].target_place.rotation, 0.01f);
+				transform.rotation = Quaternion.Slerp (transform.rotation, T_places.On_place [T_places.place_number].target_place.rotation, 0.01f);
 			
 			T_places.now_wait += Time.deltaTime;
-			if (T_places.now_wait >= T_places.On_place[T_places.place_number].place_wait) {
+			if (T_places.now_wait >= T_places.On_place [T_places.place_number].place_wait) {
+				anim.SetBool (T_places.On_place [T_places.place_number].place_anim, false);
 				T_places.place_number = move.rand.Next (0, T_places.place_count);
 				T_places.now_wait = 0;
 			}
-		}
+		} 
+
 		move.nagent.SetDestination (T_places.On_place [T_places.place_number].target_place.position);
 
 		if (move.nagent.velocity.z != 0) {

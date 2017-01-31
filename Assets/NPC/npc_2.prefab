@@ -2482,11 +2482,11 @@ MonoBehaviour:
     place_count: 0
     On_place:
     - target_place: {fileID: 0}
-      place_wait: 1
-      place_anim: 
+      place_wait: 4
+      place_anim: pistol_idle
     - target_place: {fileID: 0}
-      place_wait: 2
-      place_anim: 
+      place_wait: 3
+      place_anim: crouch_idle
   fight:
     health: 1
     damage_get: 0
