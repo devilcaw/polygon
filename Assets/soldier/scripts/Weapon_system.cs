@@ -37,6 +37,7 @@ public class Weapon_system : MonoBehaviour {
 
 	private GameObject npc;
 
+
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		Ccont = player.GetComponent<Character_control> ();
@@ -76,7 +77,10 @@ public class Weapon_system : MonoBehaviour {
 
 				switch (weapon_type) {
 				case Weapon_type.pistol:
-					pistol();
+					pistol ();
+					break;
+				case Weapon_type.shotgun:
+					shotgun ();
 					break;
 				}
 
@@ -147,7 +151,46 @@ public class Weapon_system : MonoBehaviour {
 			if (hit.rigidbody) {
 				hit.rigidbody.AddForceAtPosition (Camera.main.transform.forward * 50, hit.point, ForceMode.Impulse);
 			}
+		}
+	}
+	void shotgun ()
+	{
+		RaycastHit hit;
+		for (int j = 0; j < 7; j++) {
+			Ray ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward + new Vector3 (Random.Range (-0.02f, 0.02f), Random.Range (-0.02f, 0.02f), 0));
+			if (Physics.Raycast (ray, out hit, 100, 1)) {
+				GameObject g = Instantiate<GameObject> (decal);
+				g.transform.position = hit.point + hit.normal * 0.01f;
+				g.transform.rotation = Quaternion.LookRotation (-hit.normal);
+				g.transform.SetParent (hit.transform);
 
+				if (hit.transform.tag == "NPC_child")
+					npc = hit.transform.gameObject;
+				if (npc != null) {
+					while (npc.transform.parent != null) {
+						npc = npc.transform.parent.gameObject;
+					}
+					if (npc.tag == "NPC") {
+						npc.GetComponent<NPC_system> ().fight.damage_get = true;
+						npc.GetComponent<NPC_system> ().fight.health -= 1;
+						if (npc.GetComponent<NPC_system> ().fight.health == 0) {
+							npc.GetComponent<NPC_system> ().enabled = false;
+							npc.GetComponent<NavMeshAgent> ().enabled = false;
+							npc.GetComponent<Animator> ().enabled = false;
+							for (int i = 0; i < npc.GetComponent<NPC_system> ().Npc_body.ragdoll.Length; i++) {
+								npc.GetComponent<NPC_system> ().Npc_body.ragdoll [i].isTrigger = false;
+								npc.GetComponent<NPC_system> ().Npc_body.ragdoll [i].gameObject.GetComponent<Rigidbody> ().isKinematic = false;
+								npc.GetComponent<CapsuleCollider> ().enabled = false;
+							}
+						}
+					}
+				}
+
+				if (hit.rigidbody) {
+					hit.rigidbody.AddForceAtPosition (Camera.main.transform.forward * 50, hit.point, ForceMode.Impulse);
+				}
+
+			}
 		}
 	}
 }

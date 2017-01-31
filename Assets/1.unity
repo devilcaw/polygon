@@ -1195,7 +1195,7 @@ Rigidbody:
   m_CollisionDetection: 0
 --- !u!114 &475614501 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114446094959565306, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+  m_PrefabParentObject: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
     type: 2}
   m_PrefabInternal: {fileID: 781375855}
   m_Script: {fileID: 11500000, guid: 36ad9f3625b10694da9d38ab10afca29, type: 3}
@@ -1672,10 +1672,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 1226902304968242, guid: da8bda93e7196f64b9c14cd5a4fcdc6d, type: 2}
-      propertyPath: m_Name
-      value: soldier
-      objectReference: {fileID: 0}
     - target: {fileID: 114446094959565306, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
         type: 2}
       propertyPath: decal
@@ -1691,6 +1687,25 @@ Prefab:
       propertyPath: gilza
       value: 
       objectReference: {fileID: 1301849147}
+    - target: {fileID: 1226902304968242, guid: da8bda93e7196f64b9c14cd5a4fcdc6d, type: 2}
+      propertyPath: m_Name
+      value: soldier
+      objectReference: {fileID: 0}
+    - target: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+        type: 2}
+      propertyPath: decal
+      value: 
+      objectReference: {fileID: 380846880}
+    - target: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+        type: 2}
+      propertyPath: shoot
+      value: 
+      objectReference: {fileID: 20938572}
+    - target: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+        type: 2}
+      propertyPath: gilza
+      value: 
+      objectReference: {fileID: 1301849147}
     - target: {fileID: 114620863544743878, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
         type: 2}
       propertyPath: pricel
@@ -1701,11 +1716,6 @@ Prefab:
       propertyPath: shoot
       value: 
       objectReference: {fileID: 20938572}
-    - target: {fileID: 114446094959565306, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
-        type: 2}
-      propertyPath: weapon_type
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da8bda93e7196f64b9c14cd5a4fcdc6d, type: 2}
   m_IsPrefabParent: 0
