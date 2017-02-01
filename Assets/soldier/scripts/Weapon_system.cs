@@ -47,16 +47,12 @@ public class Weapon_system : MonoBehaviour {
 	void Update () {
 		
 		if (Input.GetKeyDown (key_bind)) {
-			if (weapon.activeSelf == false) {
-				weapon.SetActive (true);
-				shoot.have_weapon = true;
-				if (shoot.weapon_in_hands != null)
-					shoot.weapon_in_hands.SetActive (false);
-				shoot.weapon_in_hands = weapon;
-			} else {
-				weapon.SetActive (false);
-				shoot.have_weapon = false;
-			}
+			weapon.SetActive (!weapon.activeSelf);
+			shoot.have_weapon = weapon.activeSelf;
+			if ((shoot.weapon_in_hands != null) &(weapon != shoot.weapon_in_hands))
+				shoot.weapon_in_hands.SetActive (false);
+			shoot.weapon_in_hands = weapon;
+
 		}
 
 		if (weapon.activeSelf == true) {
