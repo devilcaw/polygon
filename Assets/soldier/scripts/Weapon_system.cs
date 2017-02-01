@@ -50,6 +50,9 @@ public class Weapon_system : MonoBehaviour {
 			if (weapon.activeSelf == false) {
 				weapon.SetActive (true);
 				shoot.have_weapon = true;
+				if (shoot.weapon_in_hands != null)
+					shoot.weapon_in_hands.SetActive (false);
+				shoot.weapon_in_hands = weapon;
 			} else {
 				weapon.SetActive (false);
 				shoot.have_weapon = false;
@@ -62,38 +65,63 @@ public class Weapon_system : MonoBehaviour {
 				animator.SetBool ("no_ammo", false);
 			else
 				animator.SetBool ("no_ammo", true);
+			
+				if (time_to_shoot > 0)
+					time_to_shoot -= Time.deltaTime;
+			
+			if (weapon_type != Weapon_type.auto_rifle) {
+				if ((Input.GetMouseButtonDown (0)) & (Ccont.celim == true) & (weapon.activeSelf == true) & (oboyma_count > 0) & (time_to_shoot <= 0)) {
+					time_to_shoot = wait_to_shoot;
 
-			if (time_to_shoot > 0)
-				time_to_shoot -= Time.deltaTime;
-			if ((Input.GetMouseButtonDown (0)) & (Ccont.celim == true) & (weapon.activeSelf == true) & (oboyma_count > 0) & (time_to_shoot <= 0)) {
-				time_to_shoot = wait_to_shoot;
+					GameObject go = Instantiate (gilza, gilza_t) as GameObject;
+					go.transform.position = gilza_t.position;
+					go.transform.rotation = gilza_t.rotation;
+					go.transform.parent = null;
+					go.AddComponent<Rigidbody> ().AddForce (go.transform.right, ForceMode.Impulse);
+					Physics.IgnoreCollision (player.GetComponent<Collider> (), go.GetComponent<Collider> ());
 
-				GameObject go = Instantiate (gilza, gilza_t) as GameObject;
-				go.transform.position = gilza_t.position;
-				go.transform.rotation = gilza_t.rotation;
-				go.transform.parent = null;
-				go.AddComponent<Rigidbody> ().AddForce (go.transform.right, ForceMode.Impulse);
-				Physics.IgnoreCollision (player.GetComponent<Collider> (), go.GetComponent<Collider> ());
+					switch (weapon_type) {
+					case Weapon_type.pistol:
+						pistol ();
+						break;
+					case Weapon_type.shotgun:
+						shotgun ();
+						break;
+					}
 
-				switch (weapon_type) {
-				case Weapon_type.pistol:
-					pistol ();
-					break;
-				case Weapon_type.shotgun:
-					shotgun ();
-					break;
+
+
+					oboyma_count = oboyma_count - 1;
+					shoot.shoot = true;
+					animator.SetBool ("shoot", true);
+					Ccont.animator.SetBool (anim_p_shoot, true);
+				} else {
+					shoot.shoot = false;
+					animator.SetBool ("shoot", false);
+					Ccont.animator.SetBool (anim_p_shoot, false);
 				}
-
-
-
-				oboyma_count = oboyma_count - 1;
-				shoot.shoot = true;
-				animator.SetBool ("shoot", true);
-				Ccont.animator.SetBool (anim_p_shoot, true);
 			} else {
-				shoot.shoot = false;
-				animator.SetBool ("shoot", false);
-				Ccont.animator.SetBool (anim_p_shoot, false);
+				if ((Input.GetMouseButton (0)) & (Ccont.celim == true) & (weapon.activeSelf == true) & (oboyma_count > 0) & (time_to_shoot <= 0)) {
+					time_to_shoot = wait_to_shoot;
+
+					GameObject go = Instantiate (gilza, gilza_t) as GameObject;
+					go.transform.position = gilza_t.position;
+					go.transform.rotation = gilza_t.rotation;
+					go.transform.parent = null;
+					go.AddComponent<Rigidbody> ().AddForce (go.transform.right, ForceMode.Impulse);
+					Physics.IgnoreCollision (player.GetComponent<Collider> (), go.GetComponent<Collider> ());
+
+					pistol ();
+
+					oboyma_count = oboyma_count - 1;
+					shoot.shoot = true;
+					animator.SetBool ("shoot", true);
+					Ccont.animator.SetBool (anim_p_shoot, true);
+				} else {
+					shoot.shoot = false;
+					animator.SetBool ("shoot", false);
+					Ccont.animator.SetBool (anim_p_shoot, false);
+				}
 			}
 
 			if (Input.GetKeyDown (KeyCode.R) & (oboyma_count < oboyma_max)) {
