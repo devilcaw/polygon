@@ -1673,32 +1673,32 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+    - target: {fileID: 114446094959565306, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
         type: 2}
       propertyPath: decal
       value: 
       objectReference: {fileID: 380846880}
-    - target: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+    - target: {fileID: 114446094959565306, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
         type: 2}
       propertyPath: shoot
       value: 
       objectReference: {fileID: 20938572}
-    - target: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+    - target: {fileID: 114446094959565306, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
         type: 2}
       propertyPath: gilza
       value: 
       objectReference: {fileID: 1301849147}
-    - target: {fileID: 114446094959565306, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+    - target: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
         type: 2}
       propertyPath: decal
       value: 
       objectReference: {fileID: 380846880}
-    - target: {fileID: 114446094959565306, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+    - target: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
         type: 2}
       propertyPath: shoot
       value: 
       objectReference: {fileID: 20938572}
-    - target: {fileID: 114446094959565306, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
+    - target: {fileID: 114795605091189908, guid: da8bda93e7196f64b9c14cd5a4fcdc6d,
         type: 2}
       propertyPath: gilza
       value: 

@@ -177,8 +177,7 @@ public class Weapon_system : MonoBehaviour {
 			}
 		}
 	}
-	void shotgun ()
-	{
+	void shotgun ()	{
 		RaycastHit hit;
 		for (int j = 0; j < 7; j++) {
 			Ray ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward + new Vector3 (Random.Range (-0.02f, 0.02f), Random.Range (-0.02f, 0.02f), 0));
