@@ -146,7 +146,7 @@ public class Weapon_system : MonoBehaviour {
 		Ray ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
 		if (Physics.Raycast (ray, out hit, 100, 1)) {
 			GameObject g = Instantiate<GameObject> (decal);
-			g.transform.position = hit.point + hit.normal * 0.01f;
+			g.transform.position = hit.point + hit.normal * 0.005f;
 			g.transform.rotation = Quaternion.LookRotation (-hit.normal);
 			g.transform.SetParent (hit.transform);
 
