@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class car_inventory : MonoBehaviour {
 	private GameObject player;
 	private bool on_trig;
+	private Character_control Ccont;
+	private GameObject cam;
 
 	public GameObject pricel;
 	public GameObject inventory_table;
@@ -25,6 +27,8 @@ public class car_inventory : MonoBehaviour {
 
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
+		Ccont = player.GetComponent<Character_control> ();
+		cam = GameObject.FindWithTag ("MainCamera");
 
 		vaccine.Open_vaccine.GetComponent<Button> ().onClick.AddListener (Vaccine_button);
 	}
@@ -32,10 +36,25 @@ public class car_inventory : MonoBehaviour {
 
 	void Update () {
 		if ((Input.GetKeyDown (KeyCode.E)) & (on_trig == true)) {
-			if (inventory_table.activeSelf)
+			if (inventory_table.activeSelf) {
+				
+				pricel.SetActive (true);
 				inventory_table.SetActive (false);
-			else
+				Cursor.visible = false;
+				Cursor.lockState = CursorLockMode.Locked;
+				cam.GetComponent<CamPos_Scr> ().camDots [cam.GetComponent<CamPos_Scr> ().camNum].GetComponent<Cam_Scr> ().enabled = true;
+
+				Ccont.can_walk = true;
+			} else {
+				
+				pricel.SetActive (false);
 				inventory_table.SetActive (true);
+				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.None;
+				cam.GetComponent<CamPos_Scr> ().camDots [cam.GetComponent<CamPos_Scr> ().camNum].GetComponent<Cam_Scr> ().enabled = false;
+
+				Ccont.can_walk = false;
+			}
 		}
 	}
 

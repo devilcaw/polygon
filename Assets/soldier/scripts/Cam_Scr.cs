@@ -23,8 +23,8 @@ public class Cam_Scr : MonoBehaviour {
 	void Start() {
 		
 	}
-	void LateUpdate ()
-	{
+	void LateUpdate () {
+		
         offset.z += Input.GetAxis("Mouse ScrollWheel") * 3f;
         offset.z = Mathf.Clamp(offset.z, maxZ, minZ);
 
