@@ -42,7 +42,8 @@ public class car_inventory : MonoBehaviour {
 				inventory_table.SetActive (false);
 				Cursor.visible = false;
 				Cursor.lockState = CursorLockMode.Locked;
-				cam.GetComponent<CamPos_Scr> ().camDots [cam.GetComponent<CamPos_Scr> ().camNum].GetComponent<Cam_Scr> ().enabled = true;
+				for ( int i = 0; i < cam.GetComponent<CamPos_Scr> ().camDots.Length - 1; i++)
+					cam.GetComponent<CamPos_Scr> ().camDots [i].GetComponent<Cam_Scr> ().enabled = true;
 
 				Ccont.can_walk = true;
 			} else {
@@ -51,7 +52,8 @@ public class car_inventory : MonoBehaviour {
 				inventory_table.SetActive (true);
 				Cursor.visible = true;
 				Cursor.lockState = CursorLockMode.None;
-				cam.GetComponent<CamPos_Scr> ().camDots [cam.GetComponent<CamPos_Scr> ().camNum].GetComponent<Cam_Scr> ().enabled = false;
+				for ( int i = 0; i < cam.GetComponent<CamPos_Scr> ().camDots.Length - 1; i++)
+					cam.GetComponent<CamPos_Scr> ().camDots [i].GetComponent<Cam_Scr> ().enabled = false;
 
 				Ccont.can_walk = false;
 			}
