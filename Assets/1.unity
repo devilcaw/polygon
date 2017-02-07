@@ -1804,6 +1804,15 @@ Prefab:
       propertyPath: vaccine.Open_vaccine
       value: 
       objectReference: {fileID: 2105627965}
+    - target: {fileID: 65632159392604916, guid: aa82e71d79f1ee747aea13db73d4ac43,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917358816122340, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.043
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
   m_IsPrefabParent: 0
