@@ -1784,6 +1784,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114072356667636744, guid: aa82e71d79f1ee747aea13db73d4ac43,
+        type: 2}
+      propertyPath: Ccont
+      value: 
+      objectReference: {fileID: 1190196810}
     - target: {fileID: 114819063104658776, guid: aa82e71d79f1ee747aea13db73d4ac43,
         type: 2}
       propertyPath: pricel
@@ -1799,11 +1804,6 @@ Prefab:
       propertyPath: vaccine.Open_vaccine
       value: 
       objectReference: {fileID: 2105627965}
-    - target: {fileID: 114072356667636744, guid: aa82e71d79f1ee747aea13db73d4ac43,
-        type: 2}
-      propertyPath: Ccont
-      value: 
-      objectReference: {fileID: 1190196810}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa82e71d79f1ee747aea13db73d4ac43, type: 2}
   m_IsPrefabParent: 0
