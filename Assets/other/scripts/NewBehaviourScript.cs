@@ -18,18 +18,23 @@ public class NewBehaviourScript : MonoBehaviour {
 				vertex_tr [1].localPosition,
 				vertex_tr [2].localPosition,
 				vertex_tr [3].localPosition,
-				vertex_tr [4].localPosition
+				vertex_tr [4].localPosition,
+				vertex_tr [5].localPosition
 			},
 			normals = new[] {
 				vertex_tr [0].localPosition,
 				vertex_tr [1].localPosition,
 				vertex_tr [2].localPosition,
 				vertex_tr [3].localPosition,
-				vertex_tr [4].localPosition
+				vertex_tr [4].localPosition,
+				vertex_tr [5].localPosition
 			},
 			//uv = uvs,
-			uv = new[] { new Vector2 (0, 0), new Vector2 (1, 0), new Vector2 (0, 1), new Vector2 (1, 1), new Vector2(0,0) },
-			triangles = new[] { 0, 2, 1, 2, 3, 1, 3, 4, 1 }
+			uv = new[] { new Vector2 (0, 0), new Vector2 (1, 0), new Vector2 (0, 1), new Vector2 (1, 1), new Vector2(0,0), new Vector2(0, 1) },
+			triangles = new[] { 0, 2, 1,
+				2, 3, 1, 
+				1, 3, 4,
+				3, 5, 4}
 		};
 		return mesh;
 	}
