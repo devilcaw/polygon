@@ -8,6 +8,13 @@ using UnityEditor;
 public class MeshBuilder_gui : Editor {
 	public bool bl;
 	static bool sbl;
+	public GameObject point_mesh;
+
+	void OnEnable() {
+		var meshbuilder = target  as MeshBuilder;
+
+		point_mesh = meshbuilder.point_mesh;
+	}
 
 	public override void OnInspectorGUI() {
 		DrawDefaultInspector ();
@@ -25,13 +32,20 @@ public class MeshBuilder_gui : Editor {
 
 
 	void OnSceneGUI() {
+		
 		Event e = Event.current;
-		if (e.keyCode == KeyCode.Alpha3)
-			Debug.Log (e.keyCode);
-		/*if (Event.current.isMouse == true) {
+		if (e.keyCode == KeyCode.F) {
+			RaycastHit hit;
 			Ray ray = HandleUtility.GUIPointToWorldRay (Event.current.mousePosition);
-			Debug.Log(ray.ToString());
-		}*/
+			if (Physics.Raycast (ray, out hit, 1000, 1))
+				CreatePoint (hit.point);
+		
+		}
+	}
+
+	void CreatePoint(Vector3 point_pos) {
+		GameObject obj = Instantiate(point_mesh);
+		obj.transform.position = point_pos;
 	}
 
 	static MeshBuilder_gui () {

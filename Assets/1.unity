@@ -1097,6 +1097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5022b726c9cad4d96de8c31fc3b6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  point_mesh: {fileID: 1348023349}
+  meshes: []
 --- !u!1 &382862838
 GameObject:
   m_ObjectHideFlags: 0

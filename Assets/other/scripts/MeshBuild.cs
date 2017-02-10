@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MeshBuild : MonoBehaviour {
 
+
 	public static Mesh Quad(Vector3 origin, Vector3 width, Vector3 length)
 	{
 		var normal = Vector3.Cross(length, width).normalized;
