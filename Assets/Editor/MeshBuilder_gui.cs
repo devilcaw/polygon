@@ -24,6 +24,15 @@ public class MeshBuilder_gui : Editor {
 	}
 
 
+	void OnSceneGUI() {
+		Event e = Event.current;
+		if (e.keyCode == KeyCode.Alpha3)
+			Debug.Log (e.keyCode);
+		/*if (Event.current.isMouse == true) {
+			Ray ray = HandleUtility.GUIPointToWorldRay (Event.current.mousePosition);
+			Debug.Log(ray.ToString());
+		}*/
+	}
 
 	static MeshBuilder_gui () {
 		if (sbl == true)
