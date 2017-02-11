@@ -1,17 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour {
 	public Transform[] vertex_tr;
+	public List<int> arr = new List<int>();
 
-	public Mesh Quad()
-	{
+	public Mesh Quad() {
 		//var normal = Vector3.Cross().normalized;
 		Vector2[] uvs = new Vector2[vertex_tr.Length];
-		for (int i=0; i < uvs.Length; i++) {
-			uvs[i] = new Vector2(vertex_tr[i].position.x, vertex_tr[i].position.z);
+		for (int i = 0; i < uvs.Length; i++) {
+			uvs [i] = new Vector2 (vertex_tr [i].localPosition.x, vertex_tr [i].localPosition.z);
 		}
+
+		for (int i = 2; i < vertex_tr.Length - 1; i++) {
+			for (int j = 1; j < 2; j++) {
+				if (j == 1) {
+					arr.Add (i);
+					arr.Add (i - 2);
+					arr.Add (i - 1);
+				} else {
+					arr.Add (i);
+					arr.Add (i - 1);
+					arr.Add (i + 1);
+				}
+			}
+		}
+		Debug.Log (arr[1]);
+
 		var mesh = new Mesh {
 			vertices = new[] {
 				vertex_tr [0].localPosition,
@@ -29,12 +46,13 @@ public class NewBehaviourScript : MonoBehaviour {
 				vertex_tr [4].localPosition,
 				vertex_tr [5].localPosition
 			},
-			//uv = uvs,
-			uv = new[] { new Vector2 (0, 0), new Vector2 (1, 0), new Vector2 (0, 1), new Vector2 (1, 1), new Vector2(0,0), new Vector2(0, 1) },
-			triangles = new[] { 0, 2, 1,
-				2, 3, 1, 
-				1, 3, 4,
-				3, 5, 4}
+			uv = uvs,
+			//uv = new[] { new Vector2 (0, 0), new Vector2 (1, 0), new Vector2 (0, 1), new Vector2 (1, 1), new Vector2(0,0), new Vector2(0, 1) },
+			triangles = new[] { 0, 1, 2,
+				1, 3, 2, 
+				2, 3, 4,
+				3, 5, 4
+			}
 		};
 		return mesh;
 	}

@@ -44,8 +44,11 @@ public class MeshBuilder_gui : Editor {
 	}
 
 	void CreatePoint(Vector3 point_pos) {
+		var meshbuilder = target  as MeshBuilder;
+
 		GameObject obj = Instantiate(point_mesh);
 		obj.transform.position = point_pos;
+		obj.transform.SetParent(meshbuilder.gameObject.transform);
 	}
 
 	static MeshBuilder_gui () {
