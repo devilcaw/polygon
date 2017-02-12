@@ -5,7 +5,6 @@ using UnityEditor;
 
 
 [CustomEditor(typeof(NPC_system))]
-[CanEditMultipleObjects]
 public class NPC_system_gui : Editor {
 	
 	public int h_slider;

@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class MeshBuilder_mesh : MonoBehaviour {
 	public Transform[] vertex_tr;
 	public List<int> arr = new List<int>();
 	private int j = 1;

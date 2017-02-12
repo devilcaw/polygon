@@ -9,15 +9,29 @@ public class MeshBuilder_gui : Editor {
 	public bool bl;
 	static bool sbl;
 	public GameObject point_mesh;
+	public GameObject go;
 
 	void OnEnable() {
 		var meshbuilder = target  as MeshBuilder;
-
-		point_mesh = meshbuilder.point_mesh;
+	
+		go = Resources.Load<GameObject> ("Prefabs/MeshBuilder/empty");
+		point_mesh = Resources.Load<GameObject>("Prefabs/MeshBuilder/point_mesh");
 	}
 
 	public override void OnInspectorGUI() {
 		DrawDefaultInspector ();
+
+		var meshbuilder = target  as MeshBuilder;
+
+
+		if (GUILayout.Button ("Create new mesh")) {
+
+			GameObject obj = Instantiate<GameObject> (go);
+
+			obj.transform.position = meshbuilder.transform.position;
+			obj.transform.SetParent(meshbuilder.transform);
+			
+		}
 
 		if (GUILayout.Button ("but")) { 
 			if (sbl == false) {
