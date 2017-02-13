@@ -10,6 +10,8 @@ public class MeshBuilder_gui : Editor {
 	static bool sbl;
 	public GameObject point_mesh;
 	public GameObject go;
+	public float c;
+
 
 	void OnEnable() {
 		var meshbuilder = target  as MeshBuilder;
@@ -46,14 +48,16 @@ public class MeshBuilder_gui : Editor {
 
 
 	void OnSceneGUI() {
-		
 		Event e = Event.current;
-		if (e.keyCode == KeyCode.F) {
+		c += Time.deltaTime;
+
+
+		if ((e.keyCode == KeyCode.F) & (c >= 1)) {
 			RaycastHit hit;
 			Ray ray = HandleUtility.GUIPointToWorldRay (Event.current.mousePosition);
 			if (Physics.Raycast (ray, out hit, 1000, 1))
 				CreatePoint (hit.point);
-		
+			c = 0;		
 		}
 	}
 
