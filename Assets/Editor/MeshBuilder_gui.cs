@@ -7,7 +7,7 @@ using UnityEditor;
 [CustomEditor(typeof(MeshBuilder))]
 public class MeshBuilder_gui : Editor {
 	public bool bl;
-	static bool sbl;
+	public bool sbl;
 	public GameObject point_mesh;
 	public GameObject go;
 	public float c;
@@ -16,7 +16,7 @@ public class MeshBuilder_gui : Editor {
 	void OnEnable() {
 		var meshbuilder = target  as MeshBuilder;
 	
-		go = Resources.Load<GameObject> ("Prefabs/MeshBuilder/empty");
+		go = Resources.Load<GameObject> ("Prefabs/MeshBuilder/mesh_empty");
 		point_mesh = Resources.Load<GameObject>("Prefabs/MeshBuilder/point_mesh");
 	}
 
@@ -32,7 +32,7 @@ public class MeshBuilder_gui : Editor {
 
 			obj.transform.position = meshbuilder.transform.position;
 			obj.transform.SetParent(meshbuilder.transform);
-			
+			obj.AddComponent<MeshBuilder_mesh> ();
 		}
 
 		if (GUILayout.Button ("but")) { 
@@ -45,35 +45,7 @@ public class MeshBuilder_gui : Editor {
 			}
 		}
 	}
-
-
-	void OnSceneGUI() {
-		Event e = Event.current;
-		c += Time.deltaTime;
-
-
-		if ((e.keyCode == KeyCode.F) & (c >= 1)) {
-			RaycastHit hit;
-			Ray ray = HandleUtility.GUIPointToWorldRay (Event.current.mousePosition);
-			if (Physics.Raycast (ray, out hit, 1000, 1))
-				CreatePoint (hit.point);
-			c = 0;		
-		}
-	}
-
-	void CreatePoint(Vector3 point_pos) {
-		var meshbuilder = target  as MeshBuilder;
-
-		GameObject obj = Instantiate(point_mesh);
-		obj.transform.position = point_pos;
-		obj.transform.SetParent(meshbuilder.gameObject.transform);
-	}
-
-	static MeshBuilder_gui () {
-		if (sbl == true)
-			EditorApplication.update = Update;
-	}
-
+		
 
 	static void Update () {
 		Debug.Log (1);
