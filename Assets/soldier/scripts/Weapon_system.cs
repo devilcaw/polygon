@@ -45,7 +45,7 @@ public class Weapon_system : MonoBehaviour {
 	
 
 	void Update () {
-		
+
 		if (Input.GetKeyDown (key_bind)) {
 			weapon.SetActive (!weapon.activeSelf);
 			shoot.have_weapon = weapon.activeSelf;
@@ -158,7 +158,9 @@ public class Weapon_system : MonoBehaviour {
 				}
 				if (npc.tag == "NPC") {
 					npc.GetComponent<NPC_system> ().fight.damage_get = true;
-					npc.GetComponent<NPC_system> ().fight.health -= 1;
+					if (npc.GetComponent<NPC_system> ().fight.health > 0)
+						npc.GetComponent<NPC_system> ().fight.health -= 1;
+					
 					if (npc.GetComponent<NPC_system> ().fight.health == 0) {
 						npc.GetComponent<NPC_system> ().enabled = false;
 						npc.GetComponent<NavMeshAgent> ().enabled = false;
@@ -195,7 +197,9 @@ public class Weapon_system : MonoBehaviour {
 					}
 					if (npc.tag == "NPC") {
 						npc.GetComponent<NPC_system> ().fight.damage_get = true;
-						npc.GetComponent<NPC_system> ().fight.health -= 1;
+						if (npc.GetComponent<NPC_system> ().fight.health > 0)
+							npc.GetComponent<NPC_system> ().fight.health -= 1;
+						
 						if (npc.GetComponent<NPC_system> ().fight.health == 0) {
 							npc.GetComponent<NPC_system> ().enabled = false;
 							npc.GetComponent<NavMeshAgent> ().enabled = false;
