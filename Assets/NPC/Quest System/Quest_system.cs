@@ -55,13 +55,20 @@ public class Quest_system : MonoBehaviour {
 
 	void Update () {
 		if ((On_trig == true) & (Input.GetButtonDown ("Use")) & (Quest_window.activeSelf == false)) {
-			
-			Quest_window.GetComponent<Dialog_window> ().quest = GetComponent<Quest_system> ();
+			Dialog_window dialog_window = Quest_window.GetComponent<Dialog_window> ();
+			dialog_window.call_obj = gameObject;
 			Quest_window.SetActive (true);
 
 			if (Stage [0].passed == false)
-				Quest_window.GetComponent<Dialog_window>().Dialog_text.GetComponent<Text> ().text = Text[0].ToString (); 
-			
+				dialog_window.Dialog_text.GetComponent<Text> ().text = Text[0].ToString (); 
+			if (Stage [Stage.Length - 2].passed == true) {
+				Text.Clear ();
+				for (int i = 0; i < Stage [Stage.Length - 1].Text.Length; i++) {
+					Debug.Log (i);
+					Text.Add (Stage [Stage.Length - 1].Text[i]);
+				}
+				dialog_window.Dialog_text.GetComponent<Text> ().text = Text [0].ToString ();
+			}
 		}
 
 		if (quest_active == true) {

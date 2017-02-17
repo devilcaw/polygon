@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 
 public class Dialog_window : MonoBehaviour {
-	public Quest_system quest;
+	public GameObject call_obj;
 
 	public GameObject Dialog_exit;
 	public GameObject Dialog_accept;
@@ -38,11 +38,22 @@ public class Dialog_window : MonoBehaviour {
 		OnDisble ();
 	}
 	void AcceptButton() {
-		quest.quest_active = true;
+		Component[] components = call_obj.GetComponents<Component> ();
+		foreach (var script in components) {
+			
+			if ((script as Quest_system) != null) {
+				Quest_system quest = call_obj.GetComponent<Quest_system> ();
+				quest.quest_active = true;
+				quest.Stage [0].passed = true;
+			}
+		}
+
 		OnDisble ();
 	}
 	void RejectButton() {
-		quest.Ruined = true;
+		if (call_obj.GetComponent<Quest_system> () != null)
+			call_obj.GetComponent<Quest_system> ().Ruined = true;
+		
 		OnDisble ();
 	}
 	void Scroll() {
