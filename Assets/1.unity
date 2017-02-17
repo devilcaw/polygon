@@ -956,13 +956,18 @@ MonoBehaviour:
   quest_type: 0
   reputation: 0000000000000000000000000000000000000000
   Quest_window: {fileID: 1674571554}
-  Text:
-  - Hello retard
   Prize: 0
   Stage:
   - passed: 0
+    Quest_npc: {fileID: 0}
+    Quest_item: {fileID: 0}
+    Text:
+    - Hello Retard
+  - passed: 0
     Quest_npc: {fileID: 1707847594}
     Quest_item: {fileID: 0}
+    Text:
+    - You win
   quest_active: 0
   Ruined: 0
 --- !u!65 &201446108

@@ -3,17 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+internal enum Accept_func {
+	passed,
+	ruined
+}
+internal enum Reject_func {
+	passed,
+	ruined
+}
 public class Quest_system_npc_role : MonoBehaviour {
 	public int Stage; // this stage quest;
 
 	private bool On_trig;
 	private NPC_system npc_sys;
 	public Quest_system quest;
-	private int c;
 
+	[System.Serializable]
 	public class Can_speak {
 		public bool canSpeak; // player can speak with npc
-		public string[] Text; // dialog
+		public List<string> Text = new List<string>(); // dialog
+		public GameObject Quest_window; // global window;
 	}
 
 	public GameObject Item; // quest item
@@ -21,21 +30,25 @@ public class Quest_system_npc_role : MonoBehaviour {
 	public bool NeedKill; // need kill this npc
 	public bool NeedBackStage; // need have passed early stage
 
+	[SerializeField]
+	private Accept_func AcceptFunction = Accept_func.passed;
+	[SerializeField]
+	private Reject_func RejectFunction = Reject_func.passed;
+
+
 	void Start () {
 		npc_sys = GetComponent<NPC_system> ();
 
 		if (quest == null)
-		while (quest == null) {
+		while (quest == null) { // need when quest give parametr in void start
 			
 		}
-		if (quest.Stage.Length != 1)
-			c = 1;
 	}
 
 
 	void Update () {
 
-		if (((NeedBackStage == true) & (quest.Stage [Stage - c].passed == true)) | (NeedBackStage == false)) {
+		if (((NeedBackStage == true) & (quest.Stage [Stage - 1].passed == true)) | (NeedBackStage == false)) {
 			
 			if (NeedKill == true) {
 				

@@ -23,7 +23,7 @@ public class Quest_system_item : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		Debug.Log (1);
+		Debug.Log ("item_raycast");
 		if (col.gameObject.tag == "Player")
 			On_trig = true;	
 	}

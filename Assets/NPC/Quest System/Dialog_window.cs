@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Dialog_window : MonoBehaviour {
 	public Quest_system quest;
 
@@ -11,6 +12,7 @@ public class Dialog_window : MonoBehaviour {
 	public GameObject Dialog_reject;
 	public GameObject Dialog_scrollbar;
 	public GameObject Dialog_text;
+
 
 	private Vector2 pos;
 
@@ -33,14 +35,15 @@ public class Dialog_window : MonoBehaviour {
 
 
 	void ExitButton() {
-		Dialog_text.GetComponent<Text> ().text = null;
-		gameObject.SetActive (false);
+		OnDisble ();
 	}
 	void AcceptButton() {
 		quest.quest_active = true;
+		OnDisble ();
 	}
 	void RejectButton() {
 		quest.Ruined = true;
+		OnDisble ();
 	}
 	void Scroll() {
 		Dialog_text.transform.position = new Vector2 (Dialog_text.transform.position.x, pos.y + Dialog_scrollbar.GetComponent<Scrollbar> ().value * 1000);
@@ -51,6 +54,8 @@ public class Dialog_window : MonoBehaviour {
 		Cursor.lockState = CursorLockMode.None;
 	}
 	void OnDisble() {
+		Dialog_text.GetComponent<Text> ().text = null;
+		gameObject.SetActive (false);
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
 	}

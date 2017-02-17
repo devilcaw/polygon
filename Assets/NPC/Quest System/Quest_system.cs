@@ -23,10 +23,12 @@ public class Quest_system : MonoBehaviour {
 		public bool passed;
 		public GameObject Quest_npc; 
 		public GameObject Quest_item; //item for quest
+		public string[] Text; // Quest description
 	}
+	public List<string> Text = new List<string>(); // dialog
 
 	public GameObject Quest_window; // global window;
-	public string[] Text; // Quest description
+
 
 	public int Prize;
 	public Quest_box[] Stage;
@@ -38,8 +40,11 @@ public class Quest_system : MonoBehaviour {
 
 	void Start () {
 		for (int i = 0; i < Stage.Length; i++) {
-			Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ().Stage = i;
-			Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ().quest = GetComponent<Quest_system>();
+			if (Stage [i].Quest_npc != null) {
+				Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ().Stage = i;
+				Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ().quest = GetComponent<Quest_system> ();
+				Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ().CanSpeak.Quest_window = Quest_window;
+			}
 		}
 	}
 	
@@ -49,10 +54,14 @@ public class Quest_system : MonoBehaviour {
 			
 			Quest_window.GetComponent<Dialog_window> ().quest = GetComponent<Quest_system> ();
 			Quest_window.SetActive (true);
-			for (int i = 0; i < Text.Length; i++)
-				Quest_window.GetComponent<Dialog_window> ().Dialog_text.GetComponent<Text> ().text += Text [i];
+			for (int j = 0; j < Stage.Length - 1; j++) {
+				if (Stage [j].passed == true) {
+					Stage[j].Quest_npc.GetComponent<Quest_system_npc_role>().CanSpeak.Text = null;
+					for (int i = 0; i < Stage [j].Text.Length-1; i++)
+						Stage [j].Quest_npc.GetComponent<Quest_system_npc_role> ().CanSpeak.Text.Add (Stage [j + 1].Text [i]);
+				}
+			}
 		}
-
 
 		if (quest_active == true) {
 			if (quest_type == Quest_type.Killer) {
@@ -62,7 +71,9 @@ public class Quest_system : MonoBehaviour {
 			}
 
 			if (quest_type == Quest_type.Item) {
-				
+				if (Stage [Stage.Length - 1].Quest_item != null) {
+					Debug.Log ("WIN");
+				}
 			}
 		}
 	}
