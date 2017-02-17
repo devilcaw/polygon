@@ -51,8 +51,14 @@ public class Dialog_window : MonoBehaviour {
 		OnDisble ();
 	}
 	void RejectButton() {
-		if (call_obj.GetComponent<Quest_system> () != null)
-			call_obj.GetComponent<Quest_system> ().Ruined = true;
+		Component[] components = call_obj.GetComponents<Component> ();
+		foreach (var script in components) {
+
+			if ((script as Quest_system) != null) {
+				Quest_system quest = call_obj.GetComponent<Quest_system> ();
+				quest.Ruined = true;
+			}
+		}
 		
 		OnDisble ();
 	}

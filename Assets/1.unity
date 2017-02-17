@@ -955,6 +955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest_type: 0
   reputation: 0000000000000000000000000000000000000000
+  Text: []
   Quest_window: {fileID: 1674571554}
   Prize: 0
   Stage:
@@ -965,6 +966,11 @@ MonoBehaviour:
     - Hello Retard
   - passed: 0
     Quest_npc: {fileID: 1707847594}
+    Quest_item: {fileID: 0}
+    Text:
+    - 
+  - passed: 0
+    Quest_npc: {fileID: 0}
     Quest_item: {fileID: 0}
     Text:
     - You win
@@ -6538,7 +6544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c4f34753e54554ea279db6f94300ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 0}
+  call_obj: {fileID: 0}
   Dialog_exit: {fileID: 839517444}
   Dialog_accept: {fileID: 1736517705}
   Dialog_reject: {fileID: 495659937}
@@ -6644,8 +6650,14 @@ MonoBehaviour:
   Stage: 0
   quest: {fileID: 0}
   Item: {fileID: 1875130421383874, guid: aed1f06452ed9144bae753de7f418065, type: 2}
+  CanSpeak:
+    canSpeak: 0
+    Text: []
+    Quest_window: {fileID: 0}
   NeedKill: 1
   NeedBackStage: 0
+  AcceptFunction: 0
+  RejectFunction: 0
 --- !u!1 &1715574821
 GameObject:
   m_ObjectHideFlags: 0

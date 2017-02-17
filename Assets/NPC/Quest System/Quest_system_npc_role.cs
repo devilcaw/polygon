@@ -48,6 +48,14 @@ public class Quest_system_npc_role : MonoBehaviour {
 
 	void Update () {
 
+		if ((On_trig == true) & (Input.GetButtonDown ("Use")) & (quest.Quest_window.activeSelf == false) & (CanSpeak.canSpeak == true)) {
+			Dialog_window dialog_window = quest.Quest_window.GetComponent<Dialog_window> ();
+			dialog_window.call_obj = gameObject;
+			quest.Quest_window.SetActive (true);
+
+
+		}
+
 		if (((NeedBackStage == true) & (quest.Stage [Stage - 1].passed == true)) | (NeedBackStage == false)) {
 			
 			if (NeedKill == true) {
@@ -56,9 +64,10 @@ public class Quest_system_npc_role : MonoBehaviour {
 					quest.Stage [Stage].passed = true;
 					GameObject obj = Instantiate<GameObject> (Item, transform.position + Vector3.up, Quaternion.identity);
 					obj.AddComponent<Quest_system_item> ();
-					obj.GetComponent<Quest_system_item> ().Stage = Stage;
-					obj.GetComponent<Quest_system_item> ().quest = quest;
-					obj.GetComponent<Quest_system_item> ().str_c = Item.name.Length;
+					Quest_system_item obj_item = obj.GetComponent<Quest_system_item> ();
+					obj_item.Stage = Stage;
+					obj_item.quest = quest;
+					obj_item.str_c = Item.name.Length;
 				}
 			}
 		}
