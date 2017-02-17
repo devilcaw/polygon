@@ -46,6 +46,10 @@ public class Quest_system : MonoBehaviour {
 				Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ().CanSpeak.Quest_window = Quest_window;
 			}
 		}
+
+		for (int i = 0; i < Stage [0].Text.Length; i++)
+			Text.Add (Stage [0].Text [i]);
+
 	}
 	
 
@@ -54,13 +58,10 @@ public class Quest_system : MonoBehaviour {
 			
 			Quest_window.GetComponent<Dialog_window> ().quest = GetComponent<Quest_system> ();
 			Quest_window.SetActive (true);
-			for (int j = 0; j < Stage.Length - 1; j++) {
-				if (Stage [j].passed == true) {
-					Stage[j].Quest_npc.GetComponent<Quest_system_npc_role>().CanSpeak.Text = null;
-					for (int i = 0; i < Stage [j].Text.Length-1; i++)
-						Stage [j].Quest_npc.GetComponent<Quest_system_npc_role> ().CanSpeak.Text.Add (Stage [j + 1].Text [i]);
-				}
-			}
+
+			if (Stage [0].passed == false)
+				Quest_window.GetComponent<Dialog_window>().Dialog_text.GetComponent<Text> ().text = Text[0].ToString (); 
+			
 		}
 
 		if (quest_active == true) {

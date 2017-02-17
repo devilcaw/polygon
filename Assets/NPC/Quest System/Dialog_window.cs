@@ -55,8 +55,8 @@ public class Dialog_window : MonoBehaviour {
 	}
 	void OnDisble() {
 		Dialog_text.GetComponent<Text> ().text = null;
-		gameObject.SetActive (false);
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
+		gameObject.SetActive (false);
 	}
 }
