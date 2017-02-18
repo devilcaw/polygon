@@ -127,26 +127,48 @@ public class NPC_system : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		if ((transform.position.x == T_places.On_place [T_places.place_number].target_place.position.x) & (transform.position.z == T_places.On_place [T_places.place_number].target_place.position.z)) {
-			anim.SetBool (T_places.On_place [T_places.place_number].place_anim, true);
-			if (transform.rotation != T_places.On_place [T_places.place_number].target_place.rotation)
-				transform.rotation = Quaternion.Slerp (transform.rotation, T_places.On_place [T_places.place_number].target_place.rotation, 0.01f);
-			
-			T_places.now_wait += Time.deltaTime;
-			if (T_places.now_wait >= T_places.On_place [T_places.place_number].place_wait) {
-				anim.SetBool (T_places.On_place [T_places.place_number].place_anim, false);
-				T_places.place_number = move.rand.Next (0, T_places.place_count);
-				T_places.now_wait = 0;
+		if (fight.health <= 0) {
+			Component[] components = GetComponents<Component> ();
+			for (int i = 0; i < components.Length; i++) {
+				if (components [i] as Collider) {
+					Collider col = components [i] as Collider;
+					col.enabled = false;
+				}
+				if (components [i] as Animator) {
+					Animator anima = components [i] as Animator;
+					anima.enabled = false;
+				}
+				if (components [i] as Quest_system) {
+					Quest_system qs = components [i] as Quest_system;
+					qs.enabled = false;
+				}
+				if (components[i] as NavMeshAgent) {
+					NavMeshAgent navagent = components[i] as NavMeshAgent;
+					navagent.enabled = false;
+				}
 			}
-		} 
-
-		move.nagent.SetDestination (T_places.On_place [T_places.place_number].target_place.position);
-
-		if (move.nagent.velocity.z != 0) {
-			anim.SetBool ("walk", true);
 		} else {
-			anim.SetBool ("walk", false);
-		}
+
+			if ((transform.position.x == T_places.On_place [T_places.place_number].target_place.position.x) & (transform.position.z == T_places.On_place [T_places.place_number].target_place.position.z)) {
+				anim.SetBool (T_places.On_place [T_places.place_number].place_anim, true);
+				if (transform.rotation != T_places.On_place [T_places.place_number].target_place.rotation)
+					transform.rotation = Quaternion.Slerp (transform.rotation, T_places.On_place [T_places.place_number].target_place.rotation, 0.01f);
+			
+				T_places.now_wait += Time.deltaTime;
+				if (T_places.now_wait >= T_places.On_place [T_places.place_number].place_wait) {
+					anim.SetBool (T_places.On_place [T_places.place_number].place_anim, false);
+					T_places.place_number = move.rand.Next (0, T_places.place_count);
+					T_places.now_wait = 0;
+				}
+			} 
+
+			move.nagent.SetDestination (T_places.On_place [T_places.place_number].target_place.position);
+
+			if (move.nagent.velocity.z != 0) {
+				anim.SetBool ("walk", true);
+			} else {
+				anim.SetBool ("walk", false);
+			}
 
 
 
@@ -154,7 +176,7 @@ public class NPC_system : MonoBehaviour {
 
 
 
-		/*
+			/*
 		if (spalil == true) {
 			nagent.SetDestination (player.transform.position);
 		}
@@ -181,5 +203,6 @@ public class NPC_system : MonoBehaviour {
 				}
 			}
 		} */
+		}
 	}
 }

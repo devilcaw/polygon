@@ -162,13 +162,13 @@ public class Weapon_system : MonoBehaviour {
 						npc.GetComponent<NPC_system> ().fight.health -= 1;
 					
 					if (npc.GetComponent<NPC_system> ().fight.health == 0) {
-						npc.GetComponent<NPC_system> ().enabled = false;
-						npc.GetComponent<NavMeshAgent> ().enabled = false;
-						npc.GetComponent<Animator> ().enabled = false;
+						//npc.GetComponent<NPC_system> ().enabled = false;
+						//npc.GetComponent<NavMeshAgent> ().enabled = false;
+						//npc.GetComponent<Animator> ().enabled = false;
 						for (int i = 0; i < npc.GetComponent<NPC_system> ().Npc_body.ragdoll.Length; i++) {
 							npc.GetComponent<NPC_system> ().Npc_body.ragdoll [i].isTrigger = false;
 							npc.GetComponent<NPC_system> ().Npc_body.ragdoll [i].gameObject.GetComponent<Rigidbody> ().isKinematic = false;
-							npc.GetComponent<CapsuleCollider> ().enabled = false;
+							//npc.GetComponent<CapsuleCollider> ().enabled = false;
 						}
 					}
 				}
