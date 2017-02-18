@@ -968,7 +968,7 @@ MonoBehaviour:
     Quest_npc: {fileID: 1707847594}
     Quest_item: {fileID: 0}
     Text:
-    - 
+    - NO, PLS! NO!
   - passed: 0
     Quest_npc: {fileID: 0}
     Quest_item: {fileID: 0}
@@ -6651,13 +6651,25 @@ MonoBehaviour:
   quest: {fileID: 0}
   Item: {fileID: 1875130421383874, guid: aed1f06452ed9144bae753de7f418065, type: 2}
   CanSpeak:
-    canSpeak: 0
+    canSpeak: 1
     Text: []
     Quest_window: {fileID: 0}
   NeedKill: 1
   NeedBackStage: 0
   AcceptFunction: 0
   RejectFunction: 0
+--- !u!65 &1707847600
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1707847594}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2, z: 4}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1715574821
 GameObject:
   m_ObjectHideFlags: 0

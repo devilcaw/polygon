@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 internal enum Accept_func {
@@ -43,17 +44,21 @@ public class Quest_system_npc_role : MonoBehaviour {
 		while (quest == null) { // need when quest give parametr in void start
 			
 		}
+
+		if (CanSpeak.canSpeak == true)
+			for (int i = 0; i < quest.Stage [Stage].Text.Length; i++)
+				CanSpeak.Text.Add (quest.Stage [Stage].Text [i]);
 	}
 
 
 	void Update () {
 
-		if ((On_trig == true) & (Input.GetButtonDown ("Use")) & (quest.Quest_window.activeSelf == false) & (CanSpeak.canSpeak == true)) {
+		if ((On_trig) & (Input.GetButtonDown ("Use")) & (quest.Quest_window.activeSelf == false) & (CanSpeak.canSpeak) & (quest.quest_active)) {
 			Dialog_window dialog_window = quest.Quest_window.GetComponent<Dialog_window> ();
 			dialog_window.call_obj = gameObject;
 			quest.Quest_window.SetActive (true);
 
-
+			dialog_window.Dialog_text.GetComponent<Text> ().text = CanSpeak.Text[0].ToString();
 		}
 
 		if (((NeedBackStage == true) & (quest.Stage [Stage - 1].passed == true)) | (NeedBackStage == false)) {

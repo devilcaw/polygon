@@ -41,9 +41,10 @@ public class Quest_system : MonoBehaviour {
 	void Start () {
 		for (int i = 0; i < Stage.Length; i++) {
 			if (Stage [i].Quest_npc != null) {
-				Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ().Stage = i;
-				Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ().quest = GetComponent<Quest_system> ();
-				Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ().CanSpeak.Quest_window = Quest_window;
+				Quest_system_npc_role quest_npc_role = Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ();
+				quest_npc_role.Stage = i;
+				quest_npc_role.quest = GetComponent<Quest_system> ();
+				quest_npc_role.CanSpeak.Quest_window = Quest_window;
 			}
 		}
 
@@ -60,12 +61,12 @@ public class Quest_system : MonoBehaviour {
 			Quest_window.SetActive (true);
 
 			if (Stage [0].passed == false)
-				dialog_window.Dialog_text.GetComponent<Text> ().text = Text[0].ToString (); 
-			if (Stage [Stage.Length - 2].passed == true) {
+				dialog_window.Dialog_text.GetComponent<Text> ().text = Text [0].ToString ();
+			else if (Stage [Stage.Length - 2].passed == true) {
 				Text.Clear ();
 				for (int i = 0; i < Stage [Stage.Length - 1].Text.Length; i++) {
 					Debug.Log (i);
-					Text.Add (Stage [Stage.Length - 1].Text[i]);
+					Text.Add (Stage [Stage.Length - 1].Text [i]);
 				}
 				dialog_window.Dialog_text.GetComponent<Text> ().text = Text [0].ToString ();
 			}
