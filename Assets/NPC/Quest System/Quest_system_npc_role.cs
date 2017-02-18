@@ -8,10 +8,7 @@ public enum Accept_func {
 	passed,
 	ruined
 }
-public enum Reject_func {
-	passed,
-	ruined
-}
+
 public class Quest_system_npc_role : MonoBehaviour {
 	public int Stage; // this stage quest;
 
@@ -26,15 +23,26 @@ public class Quest_system_npc_role : MonoBehaviour {
 		public GameObject Quest_window; // global window;
 	}
 
+	[System.Serializable]
+	public class Rep_prize {
+		public Reputation reputation; // give reputation
+		public int rep_value;
+	}
+
+	[System.Serializable]
+	public class Alternative_end {
+		public Rep_prize[] RepPrize;
+		public int Prize;
+	}
+
 	public GameObject Item; // quest item
 	public Can_speak CanSpeak;
 	public bool NeedKill; // need kill this npc
 	public bool NeedBackStage; // need have passed early stage
 
-	[SerializeField]
 	public Accept_func AcceptFunction = Accept_func.passed;
-	[SerializeField]
-	public Reject_func RejectFunction = Reject_func.passed;
+
+	public Alternative_end AlternativeEnd;
 
 
 	void Start () {
@@ -65,16 +73,18 @@ public class Quest_system_npc_role : MonoBehaviour {
 		if (((NeedBackStage == true) & (quest.Stage [Stage - 1].passed == true)) | (NeedBackStage == false)) {
 			
 			if (NeedKill == true) {
-				
-				if ((npc_sys.fight.health == 0) & (quest.Stage [Stage].passed != true)) {
+				if ((npc_sys.fight.health == 0) & (quest.Stage [Stage].passed != true))
 					quest.Stage [Stage].passed = true;
-					GameObject obj = Instantiate<GameObject> (Item, transform.position + Vector3.up, Quaternion.identity);
-					obj.AddComponent<Quest_system_item> ();
-					Quest_system_item obj_item = obj.GetComponent<Quest_system_item> ();
-					obj_item.Stage = Stage;
-					obj_item.quest = quest;
-					obj_item.str_c = Item.name.Length;
-				}
+			}
+			if ((npc_sys.fight.health == 0) & (Item != null)) {
+				GameObject obj = Instantiate<GameObject> (Item, transform.position + Vector3.up, Quaternion.identity);
+				obj.AddComponent<Quest_system_item> ();
+				Quest_system_item obj_item = obj.GetComponent<Quest_system_item> ();
+				obj_item.Stage = Stage;
+				obj_item.quest = quest;
+				obj_item.str_c = Item.name.Length;
+
+				this.enabled = false;
 			}
 		}
 	}

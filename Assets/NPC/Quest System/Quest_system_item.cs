@@ -18,6 +18,10 @@ public class Quest_system_item : MonoBehaviour {
 	void Update () {
 		if ((On_trig == true) & (Input.GetButtonDown ("Use"))) {
 			quest.Stage [Stage].Quest_item = Resources.Load(gameObject.name.Remove(str_c)) as GameObject;
+
+			if (quest.quest_type == Quest_type.Item)
+				quest.Stage [Stage].passed = true;
+
 			Destroy(gameObject);
 		}
 	}

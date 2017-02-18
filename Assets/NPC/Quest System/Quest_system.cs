@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-internal enum Reputation {
-	Civil
-
+public enum Reputation {
+	Civil,
+	test
 }
-internal enum Quest_type {
+public enum Quest_type {
 	Killer,
 	Item
 }
 public class Quest_system : MonoBehaviour {
-	[SerializeField]
-	private Quest_type quest_type = Quest_type.Killer;
-	[SerializeField]
-	private Reputation[] reputation; // give reputation 
+	
+	public Quest_type quest_type = Quest_type.Killer;
+
+	[System.Serializable]
+	public class Rep_prize {
+		public Reputation reputation; // give reputation
+		public int rep_value;
+	}
+
 	private bool On_trig;
 
 	[System.Serializable]
@@ -31,6 +36,8 @@ public class Quest_system : MonoBehaviour {
 
 
 	public int Prize;
+	public Rep_prize[] RepPrize; // how many give reputation 
+
 	public Quest_box[] Stage;
 	[HideInInspector]
 	public bool quest_active;
@@ -55,7 +62,7 @@ public class Quest_system : MonoBehaviour {
 	
 
 	void Update () {
-		if ((On_trig == true) & (Input.GetButtonDown ("Use")) & (Quest_window.activeSelf == false)) {
+		if ((On_trig) & (Input.GetButtonDown ("Use")) & (!Quest_window.activeSelf) & (!Stage[Stage.Length - 1].passed)) {
 			Dialog_window dialog_window = Quest_window.GetComponent<Dialog_window> ();
 			dialog_window.call_obj = gameObject;
 			Quest_window.SetActive (true);

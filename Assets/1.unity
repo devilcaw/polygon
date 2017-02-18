@@ -1283,11 +1283,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f8b75662778724b8ad727499dafee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest_type: 0
-  reputation: 
+  quest_type: 1
   Text: []
   Quest_window: {fileID: 1674571554}
   Prize: 0
+  RepPrize:
+  - reputation: 0
+    rep_value: 0
   Stage:
   - passed: 0
     Quest_npc: {fileID: 0}
@@ -9457,10 +9459,12 @@ MonoBehaviour:
     canSpeak: 1
     Text: []
     Quest_window: {fileID: 0}
-  NeedKill: 1
+  NeedKill: 0
   NeedBackStage: 0
   AcceptFunction: 0
-  RejectFunction: 0
+  AlternativeEnd:
+    RepPrize: []
+    Prize: 0
 --- !u!65 &1707847600
 BoxCollider:
   m_ObjectHideFlags: 0

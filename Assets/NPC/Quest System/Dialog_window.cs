@@ -44,7 +44,10 @@ public class Dialog_window : MonoBehaviour {
 			if ((script as Quest_system) != null) {
 				Quest_system quest = call_obj.GetComponent<Quest_system> ();
 				quest.quest_active = true;
-				quest.Stage [0].passed = true;
+				if (!quest.Stage [0].passed)
+					quest.Stage [0].passed = true;
+				else if (quest.Stage [quest.Stage.Length - 2].passed)
+					quest.Stage [quest.Stage.Length - 1].passed = true;
 			}
 
 			if ((script as Quest_system_npc_role) != null) {
@@ -54,6 +57,7 @@ public class Dialog_window : MonoBehaviour {
 				}
 				if (quest_npc_role.AcceptFunction == Accept_func.ruined) {
 					quest_npc_role.quest.Ruined = true;
+					// alternative end
 				}
 
 			}
