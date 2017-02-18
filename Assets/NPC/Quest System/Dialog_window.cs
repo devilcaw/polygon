@@ -46,6 +46,17 @@ public class Dialog_window : MonoBehaviour {
 				quest.quest_active = true;
 				quest.Stage [0].passed = true;
 			}
+
+			if ((script as Quest_system_npc_role) != null) {
+				Quest_system_npc_role quest_npc_role = call_obj.GetComponent<Quest_system_npc_role> ();
+				if (quest_npc_role.AcceptFunction == Accept_func.passed) {
+					quest_npc_role.quest.Stage [quest_npc_role.Stage].passed = true;
+				}
+				if (quest_npc_role.AcceptFunction == Accept_func.ruined) {
+					quest_npc_role.quest.Ruined = true;
+				}
+
+			}
 		}
 
 		OnDisble ();

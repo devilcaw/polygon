@@ -61,7 +61,8 @@ public class Quest_system : MonoBehaviour {
 			Quest_window.SetActive (true);
 
 			if (Stage [0].passed == false)
-				dialog_window.Dialog_text.GetComponent<Text> ().text = Text [0].ToString ();
+				for (int i = 0; i < Text.Count; i++)
+					dialog_window.Dialog_text.GetComponent<Text> ().text += Text [i].ToString ();
 			else if (Stage [Stage.Length - 2].passed == true) {
 				Text.Clear ();
 				for (int i = 0; i < Stage [Stage.Length - 1].Text.Length; i++) {

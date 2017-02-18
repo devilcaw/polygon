@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-internal enum Accept_func {
+public enum Accept_func {
 	passed,
 	ruined
 }
-internal enum Reject_func {
+public enum Reject_func {
 	passed,
 	ruined
 }
@@ -32,9 +32,9 @@ public class Quest_system_npc_role : MonoBehaviour {
 	public bool NeedBackStage; // need have passed early stage
 
 	[SerializeField]
-	private Accept_func AcceptFunction = Accept_func.passed;
+	public Accept_func AcceptFunction = Accept_func.passed;
 	[SerializeField]
-	private Reject_func RejectFunction = Reject_func.passed;
+	public Reject_func RejectFunction = Reject_func.passed;
 
 
 	void Start () {
@@ -53,12 +53,13 @@ public class Quest_system_npc_role : MonoBehaviour {
 
 	void Update () {
 
-		if ((On_trig) & (Input.GetButtonDown ("Use")) & (quest.Quest_window.activeSelf == false) & (CanSpeak.canSpeak) & (quest.quest_active)) {
+		if ((On_trig) & (Input.GetButtonDown ("Use")) & (quest.Quest_window.activeSelf == false) & (CanSpeak.canSpeak) & (quest.quest_active) & (!quest.Stage[Stage].passed)) {
 			Dialog_window dialog_window = quest.Quest_window.GetComponent<Dialog_window> ();
 			dialog_window.call_obj = gameObject;
 			quest.Quest_window.SetActive (true);
 
-			dialog_window.Dialog_text.GetComponent<Text> ().text = CanSpeak.Text[0].ToString();
+			for (int i = 0; i < CanSpeak.Text.Count; i++)
+				dialog_window.Dialog_text.GetComponent<Text> ().text += CanSpeak.Text [i].ToString ();
 		}
 
 		if (((NeedBackStage == true) & (quest.Stage [Stage - 1].passed == true)) | (NeedBackStage == false)) {
