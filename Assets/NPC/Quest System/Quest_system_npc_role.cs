@@ -52,11 +52,6 @@ public class Quest_system_npc_role : MonoBehaviour {
 	void Start () {
 		npc_sys = GetComponent<NPC_system> ();
 
-		if (quest == null)
-		while (quest == null) { // need when quest give parametr in void start
-			
-		}
-
 		if (CanSpeak.canSpeak == true)
 			for (int i = 0; i < quest.Stage [Stage].Text.Length; i++)
 				CanSpeak.Text.Add (quest.Stage [Stage].Text [i]);
