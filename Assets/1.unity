@@ -1991,7 +1991,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest_type: 0
-  Text: []
   Quest_window: {fileID: 1674571554}
   GoldPrize: 0
   RepPrize:
@@ -2017,13 +2016,13 @@ MonoBehaviour:
     Quest_npc: {fileID: 2136896458}
     Quest_item: {fileID: 0}
     item_have: {fileID: 0}
-    Text:
-    - ' Nice job, Joe.'
+    Text: []
   - passed: 0
     Quest_npc: {fileID: 0}
     Quest_item: {fileID: 0}
     item_have: {fileID: 0}
     Text:
+    - We-e-ell.
     - ' Nice job, Joe.'
   quest_active: 0
   mark: {fileID: 0}

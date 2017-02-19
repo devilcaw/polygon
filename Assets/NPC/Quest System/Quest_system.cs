@@ -31,7 +31,6 @@ public class Quest_system : MonoBehaviour {
 		public GameObject item_have;
 		public string[] Text; // Quest description
 	}
-	public List<string> Text = new List<string>(); // dialog
 
 	public GameObject Quest_window; // global window;
 
@@ -58,8 +57,6 @@ public class Quest_system : MonoBehaviour {
 			}
 		}
 
-		for (int i = 0; i < Stage [0].Text.Length; i++)
-			Text.Add (Stage [0].Text [i]);
 		
 		mark = Instantiate<GameObject> (Resources.Load<GameObject> ("Sprites/exclamation"));
 		mark.transform.position = transform.position + Vector3.up * 2.5f;
@@ -68,24 +65,21 @@ public class Quest_system : MonoBehaviour {
 	
 
 	void Update () {
-		if (Stage [Stage.Length - 1].passed)
+		if ((Stage [Stage.Length - 1].passed) | (Ruined))
 			QuestEnd ();
 
-		if ((On_trig) & (Input.GetButtonDown ("Use")) & (!Quest_window.activeSelf) & (!Stage[Stage.Length - 1].passed)) {
+		if ((On_trig) & (Input.GetButtonDown ("Use")) & (!Quest_window.activeSelf) & (!Stage [Stage.Length - 1].passed)) {
 			Dialog_window dialog_window = Quest_window.GetComponent<Dialog_window> ();
 			dialog_window.call_obj = gameObject;
 			Quest_window.SetActive (true);
 
 			if (Stage [0].passed == false)
-				for (int i = 0; i < Text.Count; i++)
-					dialog_window.Dialog_text.GetComponent<Text> ().text += Text [i].ToString ();
+				for (int i = 0; i < Stage [0].Text.Length; i++)
+					dialog_window.Dialog_text.GetComponent<Text> ().text += Stage [0].Text [i].ToString ();
 			else if (Stage [Stage.Length - 2].passed == true) {
-				Text.Clear ();
-				for (int i = 0; i < Stage [Stage.Length - 1].Text.Length; i++) {
-					Debug.Log (i);
-					Text.Add (Stage [Stage.Length - 1].Text [i]);
-				}
-				dialog_window.Dialog_text.GetComponent<Text> ().text = Text [0].ToString ();
+				for (int i = 0; i < Stage [Stage.Length - 1].Text.Length; i++)
+					dialog_window.Dialog_text.GetComponent<Text> ().text += Stage [Stage.Length - 1].Text [i].ToString ();
+				
 			}
 		}
 
@@ -119,8 +113,16 @@ public class Quest_system : MonoBehaviour {
 	}
 
 	void QuestEnd() {
-		
 		//give prize and reputation
+
+		for (int i = 0; i < Stage.Length; i++) {
+			if (Stage [i].Quest_npc != null) {
+				Destroy (Stage [i].Quest_npc.GetComponent<Quest_system_npc_role> ());
+
+				if ((Stage [i].Quest_npc.GetComponent<Quest_system_item> () as Quest_system_item) != null)
+					Destroy (Stage [i].Quest_npc.GetComponent<Quest_system_item> ());
+			}
+		}
 
 		Destroy (mark);
 		Destroy (this);

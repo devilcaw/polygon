@@ -22,8 +22,6 @@ public class Quest_system_npc_role : MonoBehaviour {
 	public class Can_speak {
 		public bool canSpeak; // player can speak with npc
 		[HideInInspector]
-		public List<string> Text = new List<string>(); // dialog
-		[HideInInspector]
 		public GameObject Quest_window; // global window;
 	}
 
@@ -52,9 +50,6 @@ public class Quest_system_npc_role : MonoBehaviour {
 	void Start () {
 		npc_sys = GetComponent<NPC_system> ();
 
-		if (CanSpeak.canSpeak == true)
-			for (int i = 0; i < quest.Stage [Stage].Text.Length; i++)
-				CanSpeak.Text.Add (quest.Stage [Stage].Text [i]);
 	}
 
 
@@ -65,8 +60,8 @@ public class Quest_system_npc_role : MonoBehaviour {
 			dialog_window.call_obj = gameObject;
 			quest.Quest_window.SetActive (true);
 
-			for (int i = 0; i < CanSpeak.Text.Count; i++)
-				dialog_window.Dialog_text.GetComponent<Text> ().text += CanSpeak.Text [i].ToString ();
+			for (int i = 0; i < quest.Stage[Stage].Text.Length; i++)
+				dialog_window.Dialog_text.GetComponent<Text> ().text += quest.Stage[Stage].Text[i].ToString ();
 		}
 
 		if (((NeedBackStage == true) & (quest.Stage [Stage - 1].passed == true)) | (NeedBackStage == false)) {
