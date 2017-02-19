@@ -9,7 +9,7 @@ public class CamPos_Scr : MonoBehaviour {
 	public Character_control Ccont;
 	//public GameObject cam_pricel;
 
-    void LateUpdate() {
+    void Update() {
 		if (Ccont.can_walk == true) {
 			if (Input.GetMouseButton (1) & (Ccont.celim == true)) {
 				camNum = 1;

@@ -127,7 +127,7 @@ public class NPC_system : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		if (fight.health <= 0) {
+		if (fight.health == 0) {
 			Component[] components = GetComponents<Component> ();
 			for (int i = 0; i < components.Length; i++) {
 				if (components [i] as Collider) {
@@ -140,6 +140,10 @@ public class NPC_system : MonoBehaviour {
 				}
 				if (components [i] as Quest_system) {
 					Quest_system qs = components [i] as Quest_system;
+					for (int j = 0; j < qs.Stage.Length; j++)
+						if (qs.Stage [j].Quest_npc == false)
+							Destroy (qs.Stage [j].Quest_npc.GetComponent<Quest_system_npc_role> ());
+
 					qs.enabled = false;
 				}
 				if (components[i] as NavMeshAgent) {

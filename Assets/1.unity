@@ -1588,7 +1588,6 @@ MonoBehaviour:
     health: 1
     damage_get: 0
     spalil: 0
-  components: []
 --- !u!136 &201446104
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9176,7 +9175,6 @@ MonoBehaviour:
     health: 0
     damage_get: 0
     spalil: 0
-  components: []
 --- !u!1 &1270157738
 GameObject:
   m_ObjectHideFlags: 0
@@ -11985,7 +11983,6 @@ MonoBehaviour:
     health: 1
     damage_get: 0
     spalil: 0
-  components: []
 --- !u!136 &1707847596
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12058,7 +12055,7 @@ MonoBehaviour:
     canSpeak: 1
     Text: []
     Quest_window: {fileID: 0}
-  NeedKill: 0
+  NeedKill: 1
   NeedBackStage: 0
   AcceptFunction: 0
   AlternativeEnd:
