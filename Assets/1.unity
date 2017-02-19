@@ -1664,12 +1664,14 @@ MonoBehaviour:
   - passed: 0
     Quest_npc: {fileID: 0}
     Quest_item: {fileID: 0}
+    item_have: {fileID: 0}
     Text:
     - This bastard steal my banana.
     - ' Go and kill him!'
   - passed: 0
     Quest_npc: {fileID: 1707847594}
     Quest_item: {fileID: 0}
+    item_have: {fileID: 0}
     Text:
     - You come kill me ?
     - ' NO, PLS! NO!'
@@ -1677,6 +1679,7 @@ MonoBehaviour:
   - passed: 0
     Quest_npc: {fileID: 0}
     Quest_item: {fileID: 0}
+    item_have: {fileID: 0}
     Text:
     - ' Nice job, Joe.'
   quest_active: 0

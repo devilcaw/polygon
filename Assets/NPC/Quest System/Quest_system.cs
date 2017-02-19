@@ -28,6 +28,7 @@ public class Quest_system : MonoBehaviour {
 		public bool passed;
 		public GameObject Quest_npc; 
 		public GameObject Quest_item; //item for quest
+		public GameObject item_have;
 		public string[] Text; // Quest description
 	}
 	public List<string> Text = new List<string>(); // dialog
@@ -67,6 +68,9 @@ public class Quest_system : MonoBehaviour {
 	
 
 	void Update () {
+		if (Stage [Stage.Length - 1].passed)
+			QuestEnd ();
+
 		if ((On_trig) & (Input.GetButtonDown ("Use")) & (!Quest_window.activeSelf) & (!Stage[Stage.Length - 1].passed)) {
 			Dialog_window dialog_window = Quest_window.GetComponent<Dialog_window> ();
 			dialog_window.call_obj = gameObject;
@@ -93,7 +97,7 @@ public class Quest_system : MonoBehaviour {
 			}
 
 			if (quest_type == Quest_type.Item) {
-				if (Stage [Stage.Length - 1].Quest_item != null) {
+				if (Stage [Stage.Length - 1].item_have != null) {
 					Debug.Log ("WIN");
 				}
 			}
@@ -112,5 +116,13 @@ public class Quest_system : MonoBehaviour {
 	public void QuestMark() {
 		if (quest_active)
 			mark.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Sprites/question");
+	}
+
+	void QuestEnd() {
+		
+		//give prize and reputation
+
+		Destroy (mark);
+		Destroy (this);
 	}
 }
