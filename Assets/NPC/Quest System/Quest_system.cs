@@ -35,12 +35,14 @@ public class Quest_system : MonoBehaviour {
 	public GameObject Quest_window; // global window;
 
 
-	public int Prize;
+	public int GoldPrize;
 	public Rep_prize[] RepPrize; // how many give reputation 
 
 	public Quest_box[] Stage;
 	[HideInInspector]
 	public bool quest_active;
+	[HideInInspector]
+	public GameObject mark;
 	[HideInInspector]
 	public bool Ruined; // ruined quest
 	
@@ -57,7 +59,10 @@ public class Quest_system : MonoBehaviour {
 
 		for (int i = 0; i < Stage [0].Text.Length; i++)
 			Text.Add (Stage [0].Text [i]);
-
+		
+		mark = Instantiate<GameObject> (Resources.Load<GameObject> ("Sprites/exclamation"));
+		mark.transform.position = transform.position + Vector3.up * 2.5f;
+		mark.transform.parent = transform;
 	}
 	
 
@@ -103,5 +108,9 @@ public class Quest_system : MonoBehaviour {
 	void OnTriggerExit(Collider col) {
 		if (col.gameObject.tag == "Player")
 			On_trig = false;
+	}
+	public void QuestMark() {
+		if (quest_active)
+			mark.GetComponent<SpriteRenderer> ().sprite = Resources.Load<Sprite> ("Sprites/question");
 	}
 }

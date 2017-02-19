@@ -10,16 +10,20 @@ public enum Accept_func {
 }
 
 public class Quest_system_npc_role : MonoBehaviour {
+	[HideInInspector]
 	public int Stage; // this stage quest;
 
 	private bool On_trig;
 	private NPC_system npc_sys;
+	[HideInInspector]
 	public Quest_system quest;
 
 	[System.Serializable]
 	public class Can_speak {
 		public bool canSpeak; // player can speak with npc
+		[HideInInspector]
 		public List<string> Text = new List<string>(); // dialog
+		[HideInInspector]
 		public GameObject Quest_window; // global window;
 	}
 
@@ -32,7 +36,7 @@ public class Quest_system_npc_role : MonoBehaviour {
 	[System.Serializable]
 	public class Alternative_end {
 		public Rep_prize[] RepPrize;
-		public int Prize;
+		public int GoldPrize;
 	}
 
 	public GameObject Item; // quest item

@@ -44,6 +44,7 @@ public class Dialog_window : MonoBehaviour {
 			if ((script as Quest_system) != null) {
 				Quest_system quest = call_obj.GetComponent<Quest_system> ();
 				quest.quest_active = true;
+				quest.QuestMark ();
 				if (!quest.Stage [0].passed)
 					quest.Stage [0].passed = true;
 				else if (quest.Stage [quest.Stage.Length - 2].passed)
