@@ -48,6 +48,8 @@ public class MeshBuilder_mesh_gui : Editor {
 			if (meshbuilder.vertex_tr [i] == null)
 				meshbuilder.vertex_tr.RemoveAt (i);
 			meshbuilder.vertex_tr [i].name = i.ToString ();
+			if (meshbuilder.norman_normals [i] == null)
+				meshbuilder.norman_normals.RemoveAt (i);
 		}
 		if ((e.keyCode == KeyCode.Space) & (c >= 1)) {
 			RaycastHit hit;
@@ -73,7 +75,8 @@ public class MeshBuilder_mesh_gui : Editor {
 
 		if (meshbuilder.vertex_tr.Count != meshbuilder.vertex_v.Count) {
 			for (int i = 0; i < meshbuilder.vertex_tr.Count; i++)
-				meshbuilder.vertex_v.Add (new Vector3 (meshbuilder.vertex_tr [i].localPosition.x, meshbuilder.vertex_tr [i].localPosition.y, meshbuilder.vertex_tr [i].localPosition.z));
+				if (meshbuilder.vertex_tr.Count > meshbuilder.vertex_v.Count)
+					meshbuilder.vertex_v.Add (new Vector3 (meshbuilder.vertex_tr [i].localPosition.x, meshbuilder.vertex_tr [i].localPosition.y, meshbuilder.vertex_tr [i].localPosition.z));
 		} else
 			for (int i = 0; i < meshbuilder.vertex_tr.Count; i++)
 				meshbuilder.vertex_v [i] = meshbuilder.vertex_tr [i].localPosition;
