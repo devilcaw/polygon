@@ -7,7 +7,7 @@ public class MeshBuilder_mesh : MonoBehaviour {
 	public List<Transform> vertex_tr = new List<Transform>();
 	public List<Vector3> vertex_v = new List<Vector3> ();
 	public List<int> trinagles = new List<int>();
-	private int j = 1;
+	private int j;
 	public List<Vector3> norman_normals = new List<Vector3>();
 	//public int[] trinagles = new int[15];
 
@@ -28,6 +28,8 @@ public class MeshBuilder_mesh : MonoBehaviour {
 
 	
 		if (trinagles.Count < ((vertex_tr.Count - 2) * 3)) {
+			trinagles.Clear ();
+			j = 1;
 			for (int i = 2; i <= vertex_tr.Count - 1; i++) {
 				if (j == 1) {
 					if (trinagles.Count < ((vertex_tr.Count - 2) * 3))
@@ -47,33 +49,11 @@ public class MeshBuilder_mesh : MonoBehaviour {
 					j = 1;
 				}
 			}
-		} else if (trinagles.Count > ((vertex_tr.Count - 2) * 3))
-			trinagles.Clear ();
-		
-		//else
-			//if (arr.Count > ((vertex_tr.Count - 2) * 3))
-			//	arr.Clear();
-
+		}
 
 		var mesh = new Mesh { vertices = vertex_v.ToArray(), normals = norman_normals.ToArray(), uv = uvs, triangles = trinagles.ToArray() };
-			//uv = new[] { new Vector2 (0, 0), new Vector2 (1, 0), new Vector2 (0, 1), new Vector2 (1, 1), new Vector2(0,0), new Vector2(0, 1) },
-			/*triangles = new[] { 0, 1, 2,
-				1, 3, 2, 
-				2, 3, 4,
-				3, 5, 4
-			}*/
 
 		return mesh;
 
-	}
-	void Update() {
-		/*
-		GetComponent<MeshFilter> ().mesh.Clear ();
-		GetComponent<MeshFilter> ().mesh.vertices = Quad ().vertices;
-		GetComponent<MeshFilter> ().mesh.triangles = Quad ().triangles;
-		GetComponent<MeshFilter> ().mesh.uv = Quad ().uv;
-		GetComponent<MeshFilter> ().mesh.RecalculateNormals ();
-
-		arr.CopyTo (trinagles); */
 	}
 }
