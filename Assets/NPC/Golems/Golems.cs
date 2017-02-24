@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Golems_player : MonoBehaviour {
+
+public enum GolemType {
+	player,
+	enemy
+}
+public class Golems : MonoBehaviour {
+
+	public GolemType GolemType = GolemType.enemy;
 
 	public int lvl;
 	public int health;
@@ -12,13 +19,13 @@ public class Golems_player : MonoBehaviour {
 	private NavMeshAgent agent;
 	private GameObject player;
 
-	private GameObject enemy;
+	public GameObject enemy;
 	private  bool attack;
 	private bool fight;
-	private bool onTrig;
+	public bool onTrig;
 	private bool can_hit;
 	private float time;
-
+	public Golems golem;
 
 	void Start () {
 		animator = GetComponent<Animator> ();
@@ -30,13 +37,14 @@ public class Golems_player : MonoBehaviour {
 	
 
 	void Update () {
-		Fight ();
+		if (enemy)
+			Fight ();
 
 	}
 
 	void Fight() {
-		if ((Vector3.Distance (transform.position, player.transform.position) > 2) & (!attack))
-			agent.SetDestination (player.transform.position);
+		if ((Vector3.Distance (transform.position, enemy.transform.position) > 2) & (!attack))
+			agent.SetDestination (enemy.transform.position);
 		else {
 			agent.SetDestination (transform.position);
 
@@ -45,7 +53,7 @@ public class Golems_player : MonoBehaviour {
 			else {
 				if (time > 0)
 					time -= Time.deltaTime;
-				else if (!animator.GetBool("attack"))
+				else if (!animator.GetBool ("attack"))
 					attack = false;
 			}
 		}
@@ -55,21 +63,30 @@ public class Golems_player : MonoBehaviour {
 		animator.SetBool ("attack", true);
 		attack = true;
 
-		transform.LookAt (player.transform.position);
+		transform.LookAt (enemy.transform.position);
 
-		if (can_hit)
-			Debug.Log (can_hit);
+	
 
 		time = 2;
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (col.gameObject.tag == "Golem_enemy")
-			can_hit = true;
+		if (GolemType == GolemType.player) {
+			if (col.gameObject.tag == "Golem_enemy")
+				can_hit = true;
+		} else if (GolemType == GolemType.enemy) {
+			if (col.gameObject.tag == "Golem_player")
+				can_hit = true;
+		}
 	}
 	void OnTriggerExit(Collider col) {
-		if (col.gameObject.tag == "Golem_enemy")
-			can_hit = false;
+		if (GolemType == GolemType.player) {
+			if (col.gameObject.tag == "Golem_enemy")
+				can_hit = false;
+		} else if (GolemType == GolemType.enemy) {
+			if (col.gameObject.tag == "Golem_player")
+				can_hit = false;
+		}
 	}
 
 	void Move() {
@@ -81,5 +98,7 @@ public class Golems_player : MonoBehaviour {
 
 	public void AttackEnd() {
 		animator.SetBool ("attack", false);
+		if (can_hit)
+			golem.health -= lvl;
 	}
 }

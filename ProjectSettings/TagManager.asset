@@ -9,6 +9,7 @@ TagManager:
   - NPC_child
   - Player_car
   - Golem_player
+  - Golem_enemy
   layers:
   - Default
   - TransparentFX
