@@ -11,7 +11,7 @@ public enum GolemType {
 public class Golems : MonoBehaviour {
 
 	public GolemType GolemType = GolemType.enemy;
-
+	public Transform guard;
 	public int lvl;
 	public int health;
 
@@ -19,13 +19,17 @@ public class Golems : MonoBehaviour {
 	private NavMeshAgent agent;
 	private GameObject player;
 
+	[HideInInspector]
 	public GameObject enemy;
 	private  bool attack;
 	private bool fight;
+	[HideInInspector]
 	public bool onTrig;
 	private bool can_hit;
 	private float time;
+	[HideInInspector]
 	public Golems golem;
+
 	public Collider[] ragdoll;
 
 
@@ -48,10 +52,17 @@ public class Golems : MonoBehaviour {
 		if (health > 0) {
 			if (enemy)
 				Fight ();
-			else if (GolemType == GolemType.player)
-				Move ();
-			else if (GolemType == GolemType.enemy)
-				enemy = player;
+			else if (GolemType == GolemType.player) {
+				if (guard == null)
+					Move (player.transform);
+				else if (guard != null)
+					Move (guard);
+			} else if (GolemType == GolemType.enemy) {
+				if (guard == null)
+					enemy = player;
+				else if (guard != null)
+					Move (guard);	
+			}
 		} else if (health <= 0)
 			Death ();
 	}
@@ -113,9 +124,9 @@ public class Golems : MonoBehaviour {
 		}
 	}
 
-	void Move() {
-		if ((Vector3.Distance (transform.position, player.transform.position) > 2) & (!fight))
-			agent.SetDestination (player.transform.position);
+	void Move(Transform target) {
+		if ((Vector3.Distance (transform.position, target.transform.position) > 2) & (!fight))
+			agent.SetDestination (target.transform.position);
 		else
 			agent.SetDestination (transform.position);
 	}

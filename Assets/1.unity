@@ -15807,6 +15807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GolemType: 0
+  guard: {fileID: 0}
   lvl: 50
   health: 0
   enemy: {fileID: 0}
@@ -19103,6 +19104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GolemType: 1
+  guard: {fileID: 0}
   lvl: 1
   health: 0
   enemy: {fileID: 0}
