@@ -11,7 +11,7 @@ public class Golems_ontrig : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (((golem.GolemType == GolemType.enemy) & (col.gameObject.tag == "Golem_player") & (golem.enemy == null)) |
+		if (((golem.GolemType == GolemType.enemy) & (col.gameObject.tag == "Golem_player")) |
 			(((golem.GolemType == GolemType.player) & (col.gameObject.tag == "Golem_enemy") & (golem.enemy == null)))) {
 			golem.enemy = col.gameObject;
 			golem.golem = col.gameObject.GetComponent<Golems> ();
