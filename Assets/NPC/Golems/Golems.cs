@@ -45,14 +45,14 @@ public class Golems : MonoBehaviour {
 	
 
 	void Update () {
-		if (enemy)
-			Fight ();
-		else if (GolemType == GolemType.player)
-			Move ();
-		else if (GolemType == GolemType.enemy)
-			enemy = player;
-
-		if (health <= 0)
+		if (health > 0) {
+			if (enemy)
+				Fight ();
+			else if (GolemType == GolemType.player)
+				Move ();
+			else if (GolemType == GolemType.enemy)
+				enemy = player;
+		} else if (health <= 0)
 			Death ();
 	}
 
@@ -131,6 +131,8 @@ public class Golems : MonoBehaviour {
 	}
 	void Death() {
 		animator.enabled = false;
+		GetComponent<CapsuleCollider> ().enabled = false;
+		GetComponent<NavMeshAgent> ().enabled = false;
 
 		for (int i = 0; i < ragdoll.Length; i++) {
 			ragdoll [i].isTrigger = false;
