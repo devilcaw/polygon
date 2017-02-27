@@ -29,6 +29,7 @@ public class Golems : MonoBehaviour {
 	private float time;
 	[HideInInspector]
 	public Golems golem;
+	public GameObject triger;
 
 	public Collider[] ragdoll;
 
@@ -49,8 +50,9 @@ public class Golems : MonoBehaviour {
 	
 
 	void Update () {
+
 		if (health > 0) {
-			if (enemy)
+			if (enemy != null)
 				Fight ();
 			else if (GolemType == GolemType.player) {
 				if (guard == null)
@@ -86,6 +88,8 @@ public class Golems : MonoBehaviour {
 		if (golem.health <= 0) {
 			enemy = null;
 			golem = null;
+			can_hit = false;
+			triger.SetActive (true);
 		}
 	}
 
@@ -97,30 +101,37 @@ public class Golems : MonoBehaviour {
 
 	
 
-		time = Random.Range (1f, 5f);
+		time = Random.Range (1, 5);
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (GolemType == GolemType.player) {
-			if (col.gameObject.tag == "Golem_enemy")
-				Debug.Log (1);
-				can_hit = true;
-		} else if (GolemType == GolemType.enemy) {
-			if (col.gameObject.tag == "Golem_player")
-				can_hit = true;
-			else if (col.gameObject.tag == "Player")
-				can_hit = true;
+		if (enemy != null) {
+			if (col.gameObject == enemy) {
+				if (GolemType == GolemType.player) {
+					if (col.gameObject.tag == "Golem_enemy")
+						can_hit = true;
+				} else if (GolemType == GolemType.enemy) {
+					if (col.gameObject.tag == "Golem_player")
+						can_hit = true;
+					else if (col.gameObject.tag == "Player")
+						can_hit = true;
+				}
+			}
 		}
 	}
 	void OnTriggerExit(Collider col) {
-		if (GolemType == GolemType.player) {
-			if (col.gameObject.tag == "Golem_enemy")
-				can_hit = false;
-		} else if (GolemType == GolemType.enemy) {
-			if (col.gameObject.tag == "Golem_player")
-				can_hit = false;
-			else if (col.gameObject.tag == "Player")
-				can_hit = false;
+		if (enemy != null) {
+			if (col.gameObject == enemy) {
+				if (GolemType == GolemType.player) {
+					if (col.gameObject.tag == "Golem_enemy")
+						can_hit = false;
+				} else if (GolemType == GolemType.enemy) {
+					if (col.gameObject.tag == "Golem_player")
+						can_hit = false;
+					else if (col.gameObject.tag == "Player")
+						can_hit = false;
+				}
+			}
 		}
 	}
 
@@ -135,7 +146,7 @@ public class Golems : MonoBehaviour {
 		animator.SetBool ("attack", false);
 		if (can_hit) {
 			if (enemy.gameObject.tag != "Player")
-				golem.health -= new System.Random ().Next (1, lvl + 1);
+				golem.health -= Random.Range ((lvl * 10) / 2, lvl * 10 + 1);
 			else
 				Debug.Log ("hit player");
 		}
@@ -144,6 +155,9 @@ public class Golems : MonoBehaviour {
 		animator.enabled = false;
 		GetComponent<CapsuleCollider> ().enabled = false;
 		GetComponent<NavMeshAgent> ().enabled = false;
+		GetComponent<BoxCollider> ().enabled = false;
+		triger.SetActive (false);
+		gameObject.GetComponent<Golems> ().enabled = false;
 
 		for (int i = 0; i < ragdoll.Length; i++) {
 			ragdoll [i].isTrigger = false;

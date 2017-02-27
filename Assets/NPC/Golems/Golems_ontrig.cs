@@ -8,6 +8,7 @@ public class Golems_ontrig : MonoBehaviour {
 
 	void Start() {
 		golem = transform.parent.GetComponent<Golems> ();
+		golem.triger = gameObject;
 	}
 
 	void OnTriggerEnter(Collider col) {
@@ -15,6 +16,7 @@ public class Golems_ontrig : MonoBehaviour {
 			(((golem.GolemType == GolemType.player) & (col.gameObject.tag == "Golem_enemy") & (golem.enemy == null)))) {
 			golem.enemy = col.gameObject;
 			golem.golem = col.gameObject.GetComponent<Golems> ();
+			gameObject.SetActive (false);
 		}
 	}
 	void OnTriggerExit(Collider col) {
